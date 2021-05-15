@@ -1,0 +1,14 @@
+.row
+  .col-2
+  .col-8
+    .card
+      .card-header
+        Edit
+        = @user.full_name
+        Account
+      .card-body
+        = render 'form'
+      .card-footer
+        = link_to user_path(@user), class: "btn btn-primary" do
+          Back
+  .col-2

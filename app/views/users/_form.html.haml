@@ -8,5 +8,7 @@
     = f.input :address
     = f.input :password
     = f.input :password_confirmation
+    = f.collection_check_boxes :role_ids, Role.all, :id, :name
+    = f.error :roles, class: "text-danger"
   .form-actions
     = f.submit "Create user account", class: 'btn btn-success'
