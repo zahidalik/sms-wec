@@ -20,6 +20,6 @@ require("channels")
 // require('popper.js');
 // require('bootstrap');
 // import 'popper.js/core';
-// import 'bootstrap/dist/js/bootstrap'
+//import 'bootstrap/dist/js/bootstrap'
 import 'bootstrap/dist/css/bootstrap'
 require("stylesheets/application.scss")

@@ -5,7 +5,10 @@
       .card-header
         Log in
       .card-body
-        some code
+        = simple_form_for(:sessions, url: sessions_signin_path) do |f|
+          = f.input :username
+          = f.input :password
+          = f.submit "Log in", class: "btn btn-sm btn-success"
       .card-footer
         = link_to "Home", root_path, class: "btn btn-primary"
   .col
