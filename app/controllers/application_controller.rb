@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :user_signed_in?
+  helper_method :current_user, :user_signed_in?, :user_signed_in_student?,
+                :user_signed_in_non_student?
 
   def current_user
     if session[:user_id]
@@ -12,5 +13,13 @@ class ApplicationController < ActionController::Base
 
   def user_signed_in?
     !!current_user
+  end
+
+  def user_signed_in_non_student?
+    !!session[:user_id]
+  end
+
+  def user_signed_in_student?
+    !!session[:student_id]
   end
 end

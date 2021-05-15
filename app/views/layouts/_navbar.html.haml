@@ -39,10 +39,16 @@
               Log in
 - if user_signed_in?
   %ul.nav.justify-content-center.bg-warning
-    %li.nav-item
-      /%a.nav-link.active{"aria-current" => "page", :href => "#"} Active
-      = link_to '#', class: "nav-link" do
-        = current_user.username
+    - if user_signed_in_non_student?
+      %li.nav-item
+        /%a.nav-link.active{"aria-current" => "page", :href => "#"} Active
+        = link_to user_path(current_user), class: "nav-link" do
+          = current_user.username
+    - elsif user_signed_in_student?
+      %li.nav-item
+        /%a.nav-link.active{"aria-current" => "page", :href => "#"} Active
+        = link_to student_path(current_user), class: "nav-link" do
+          = current_user.username
     %li.nav-item
       %a.nav-link{:href => "#"} Link
     %li.nav-item

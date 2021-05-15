@@ -6,4 +6,7 @@ Rails.application.routes.draw do
     post 'signin' => :create
     delete 'logout' => :destroy
   end
+
+  resources :users
+  resources :students
 end

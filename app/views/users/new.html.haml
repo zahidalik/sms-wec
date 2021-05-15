@@ -1,0 +1,12 @@
+.row
+  .col-2
+  .col-8
+    .card
+      .card-header
+        New User Account
+      .card-body
+        = render 'form'
+      .card-footer
+        = link_to user_path(current_user), class: "btn btn-primary" do
+          Back
+  .col-2

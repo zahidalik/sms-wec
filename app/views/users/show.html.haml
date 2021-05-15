@@ -1,0 +1,39 @@
+.row
+  .col-9.mt-3
+    .card
+      .card-header
+        = @user.full_name
+      .card-body
+        %ul.list-group.list-group-flush
+          %li.list-group-item
+            Username:
+            = @user.username
+          %li.list-group-item
+            Contact number:
+            = @user.mobile
+          %li.list-group-item
+            Address:
+            = @user.address
+          %li.list-group-item
+            Email:
+            = @user.email
+  .col-3.mt-4
+    .btn-group-vertical
+    = link_to new_student_path, class: "btn btn-lg btn-outline-success" do
+      Create New Student Account
+    = link_to new_user_path, class: "btn btn-lg btn-outline-success" do
+      Create New User Account
+%br
+.card
+  .card-header
+    All Users
+  .card-body
+    - @users.each do |user|
+      = render 'users/user', user: user
+%br
+.card
+  .card-header
+    All Students
+  .card-body
+    - @students.each do |student|
+      = render 'students/student', student: student

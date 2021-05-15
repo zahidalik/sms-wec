@@ -1,0 +1,14 @@
+= simple_form_for @student do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :username
+    = f.input :email
+    = f.input :full_name
+    = f.input :contact
+    = f.input :address
+    = f.input :father
+    = f.input :mother
+    = f.input :password
+    = f.input :password_confirmation
+  .form-actions
+    = f.submit "Create student account", class: 'btn btn-success'

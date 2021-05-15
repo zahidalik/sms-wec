@@ -1,0 +1,12 @@
+= simple_form_for @user do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :username
+    = f.input :email
+    = f.input :full_name
+    = f.input :mobile
+    = f.input :address
+    = f.input :password
+    = f.input :password_confirmation
+  .form-actions
+    = f.submit "Create user account", class: 'btn btn-success'
