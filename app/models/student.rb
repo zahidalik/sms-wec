@@ -4,4 +4,7 @@ class Student < ApplicationRecord
   validates :full_name, presence: true
 
   has_secure_password
+
+  extend FriendlyId
+  friendly_id :username, use: :slugged
 end
