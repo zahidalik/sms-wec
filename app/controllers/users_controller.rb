@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     @users = User.all
     @students = Student.all
   end

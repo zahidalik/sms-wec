@@ -56,3 +56,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # added gems
 gem "haml-rails", "~> 2.0"
 gem 'simple_form'
+gem 'friendly_id', '~> 5.4.0'
