@@ -1,13 +1,14 @@
 .row
   .col
   .col
-    .card
-      .card-header
-        Log in
+    .card.mt-5
+      .card-header.text-center
+        %h2 Log in
       .card-body
         = simple_form_for(:sessions, url: sessions_signin_path) do |f|
           = f.input :username
           = f.input :password
+          %br
           = f.submit "Log in", class: "btn btn-sm btn-success"
       .card-footer
         = link_to "Home", root_path, class: "btn btn-primary"

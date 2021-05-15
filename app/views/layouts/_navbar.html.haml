@@ -1,4 +1,4 @@
-%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
   .container-fluid
     %a.navbar-brand{:href => "#"} Navbar
     %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", :type => "button"}
@@ -27,7 +27,7 @@
       /  %input.form-control.me-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
       /  %button.btn.btn-outline-success{:type => "submit"} Search
       %ul.navbar-nav.ml-a
-        - if current_user
+        - if user_signed_in?
           %li.nav-item
             /%a.nav-link.active{"aria-current" => "page", :href => "#"} Home
             = link_to sessions_logout_path, method: :delete, class: "btn btn-sm btn-danger" do
@@ -37,3 +37,15 @@
             /%a.nav-link.active{"aria-current" => "page", :href => "#"} Home
             = link_to sessions_login_path, class: "btn btn-sm btn-success" do
               Log in
+- if user_signed_in?
+  %ul.nav.justify-content-center.bg-warning
+    %li.nav-item
+      /%a.nav-link.active{"aria-current" => "page", :href => "#"} Active
+      = link_to '#', class: "nav-link" do
+        = current_user.username
+    %li.nav-item
+      %a.nav-link{:href => "#"} Link
+    %li.nav-item
+      %a.nav-link{:href => "#"} Link
+    %li.nav-item
+      %a.nav-link.disabled{"aria-disabled" => "true", :href => "#", :tabindex => "-1"} Disabled
