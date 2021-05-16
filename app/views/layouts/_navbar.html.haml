@@ -38,7 +38,7 @@
             = link_to sessions_login_path, class: "btn btn-sm btn-success" do
               Log in
 - if user_signed_in?
-  %ul.nav.justify-content-center.bg-warning
+  %ul.nav.justify-content-center.bg-warning.mb-3
     - if user_signed_in_non_student?
       %li.nav-item
         /%a.nav-link.active{"aria-current" => "page", :href => "#"} Active

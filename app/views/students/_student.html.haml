@@ -1,2 +1,28 @@
-= link_to student_path(student), class: "btn btn-sm btn-outline-primary" do
-  = student.full_name
+.row
+  .col-4
+    .card
+      %img.card-img-top{:alt => "...", :src => "..."}/
+      .card-body
+        %h5.card-title
+          Full Name:
+          = student.full_name
+        %p.card-text
+          Email:
+          = student.email
+        %p.card-text
+          Contact Number:
+          = student.contact
+        %p.card-text
+          Address:
+          = student.address
+        %p.card-text
+          Father:
+          = student.father
+        %p.card-text
+          Mother:
+          = student.mother
+      .card-footer
+        %small.text-muted
+          Student joined us on:
+          = student.created_at.strftime("%A %d of %B, %Y")
+  .col-8

@@ -1,2 +1,25 @@
-= link_to user_path(user), class: "btn btn-sm btn-outline-primary" do
-  = user.full_name
+.card
+  %img.card-img-top{:alt => "...", :src => "..."}/
+  .card-body
+    %h5.card-title
+      Full Name:
+      = user.full_name
+    %p.card-text
+      Email:
+      = user.email
+    %p.card-text
+      Contact Number:
+      = user.mobile
+    %p.card-text
+      Address:
+      = user.address
+    - if current_user.has_role?(:admin)
+      %p.card-text
+        = render 'users/roles', user: @user
+      %p.card-text
+        = link_to edit_user_path(@user), class: "btn btn-warning" do
+          Edit user account
+  .card-footer
+    %small.text-muted
+      User joined us on:
+      = user.created_at.strftime("%A %d of %B, %Y")

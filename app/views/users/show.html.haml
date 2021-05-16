@@ -1,30 +1,8 @@
 .row
   .col-9.mt-3
-    .card
-      .card-header
-        = @user.full_name
-      .card-body
-        %ul.list-group.list-group-flush
-          %li.list-group-item
-            Username:
-            = @user.username
-          %li.list-group-item
-            Contact number:
-            = @user.mobile
-          %li.list-group-item
-            Address:
-            = @user.address
-          %li.list-group-item
-            Email:
-            = @user.email
-      - if current_user.has_role?(:admin)
-        .card-footer
-          = render 'users/roles', user: @user
-        .card-footer
-          = link_to edit_user_path(@user), class: "btn btn-warning" do
-            Edit user account
+    = render 'users/user', user: @user
   - if current_user.has_role?(:admin)
-    .col-3.mt-4
+    .col-3.mt-3
       .btn-group-vertical
       = link_to new_student_path, class: "btn btn-lg btn-outline-success" do
         Create New Student Account
@@ -32,16 +10,9 @@
         Create New User Account
 %br
 - if current_user.has_role?(:admin)
-  .card
-    .card-header
+  .btn-group 
+    = link_to users_path, class: 'btn btn-outline-primary' do
       All Users
-    .card-body
-      - @users.each do |user|
-        = render 'users/user', user: user
-  %br
-  .card
-    .card-header
+    = link_to students_path, class: "btn btn-outline-primary" do
       All Students
-    .card-body
-      - @students.each do |student|
-        = render 'students/student', student: student
+  

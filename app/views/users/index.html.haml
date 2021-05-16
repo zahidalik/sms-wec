@@ -1,0 +1,20 @@
+%h3.text-center All Users        
+%table.table.table-hover.table-bordered
+  %thead
+    %tr
+      %th{:scope => "col"} Full Name
+      %th{:scope => "col"} Email
+      %th{:scope => "col"} Contact
+      %th{:scope => "col"} Role(s)
+  - @users.each do |user|
+    %tbody
+      %tr
+        %th{:scope => "row"} 
+          = link_to user_path(user) do
+            = user.full_name
+        %td
+          = user.email
+        %td
+          = user.mobile
+        %td
+          = render 'users/roles', user: user
