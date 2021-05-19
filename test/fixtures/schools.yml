@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  head: MyString
+  deputy_head: MyString
+  academic_head: MyString
+  assistant_a_h: MyString
+  islamic_deputy: MyString
+  environment_incharge: MyString
+
+two:
+  name: MyString
+  head: MyString
+  deputy_head: MyString
+  academic_head: MyString
+  assistant_a_h: MyString
+  islamic_deputy: MyString
+  environment_incharge: MyString
