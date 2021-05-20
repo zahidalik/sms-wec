@@ -5,6 +5,9 @@ class Student < ApplicationRecord
 
   has_secure_password
 
+  has_many :student_standard_academic_years
+  has_many :standards, through: :student_standard_academic_years
+
   extend FriendlyId
   friendly_id :username, use: :slugged
 end

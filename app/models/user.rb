@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  has_many :user_standard_academic_years
+  has_many :standards, through: :user_standard_academic_years
+
   extend FriendlyId
   friendly_id :username, use: :slugged
 

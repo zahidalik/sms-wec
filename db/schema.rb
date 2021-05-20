@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_19_050037) do
+ActiveRecord::Schema.define(version: 2021_05_20_135455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,16 @@ ActiveRecord::Schema.define(version: 2021_05_19_050037) do
     t.index ["school_id"], name: "index_standards_on_school_id"
   end
 
+  create_table "student_standard_academic_years", force: :cascade do |t|
+    t.string "year"
+    t.bigint "student_id", null: false
+    t.bigint "standard_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["standard_id"], name: "index_student_standard_academic_years_on_standard_id"
+    t.index ["student_id"], name: "index_student_standard_academic_years_on_student_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -72,6 +82,16 @@ ActiveRecord::Schema.define(version: 2021_05_19_050037) do
     t.string "slug"
     t.index ["slug"], name: "index_students_on_slug", unique: true
     t.index ["username"], name: "index_students_on_username", unique: true
+  end
+
+  create_table "user_standard_academic_years", force: :cascade do |t|
+    t.string "year"
+    t.bigint "user_id", null: false
+    t.bigint "standard_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["standard_id"], name: "index_user_standard_academic_years_on_standard_id"
+    t.index ["user_id"], name: "index_user_standard_academic_years_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -97,4 +117,8 @@ ActiveRecord::Schema.define(version: 2021_05_19_050037) do
   end
 
   add_foreign_key "standards", "schools"
+  add_foreign_key "student_standard_academic_years", "standards"
+  add_foreign_key "student_standard_academic_years", "students"
+  add_foreign_key "user_standard_academic_years", "standards"
+  add_foreign_key "user_standard_academic_years", "users"
 end
