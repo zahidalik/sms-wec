@@ -1,0 +1,13 @@
+= simple_form_for(@school) do |f|
+  = f.error_notification
+  .form-inputs 
+    = f.input :name
+    = f.input :head
+    = f.input :deputy_head
+    = f.input :academic_head
+    = f.input :assistant_a_h
+    = f.input :islamic_deputy
+    = f.input :environment_incharge
+  %br
+  .form-actions 
+    = f.button :submit, class: "btn btn-primary"

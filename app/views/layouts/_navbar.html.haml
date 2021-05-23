@@ -1,57 +1,58 @@
-%nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-  .container-fluid
-    %a.navbar-brand{:href => "#"} Navbar
-    %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarSupportedContent", "data-bs-toggle" => "collapse", :type => "button"}
-      %span.navbar-toggler-icon
-    #navbarSupportedContent.collapse.navbar-collapse
-      %ul.navbar-nav.me-auto.mb-2.mb-lg-0
-        %li.nav-item
-          %a.nav-link.active{"aria-current" => "page", :href => "#"} Home
-        %li.nav-item
-          %a.nav-link{:href => "#"} Link
-        %li.nav-item.dropdown
-          %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
-            Dropdown
-          %ul.dropdown-menu{"aria-labelledby" => "navbarDropdown"}
-            %li
-              %a.dropdown-item{:href => "#"} Action
-            %li
-              %a.dropdown-item{:href => "#"} Another action
-            %li
-              %hr.dropdown-divider/
-            %li
-              %a.dropdown-item{:href => "#"} Something else here
-        %li.nav-item
-          %a.nav-link.disabled{"aria-disabled" => "true", :href => "#", :tabindex => "-1"} Disabled
-      /%form.d-flex
-      /  %input.form-control.me-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
-      /  %button.btn.btn-outline-success{:type => "submit"} Search
-      %ul.navbar-nav.ml-a
-        - if user_signed_in?
-          %li.nav-item
-            /%a.nav-link.active{"aria-current" => "page", :href => "#"} Home
-            = link_to sessions_logout_path, method: :delete, class: "btn btn-sm btn-danger" do
-              Log out
+%nav.navbar.is-dark.mb-5{"aria-label" => "main navigation", :role => "navigation"}
+  .navbar-brand
+    %a.navbar-item{:href => "https://bulma.io"}
+    = link_to root_path, class: 'navbar-item' do
+      = image_tag 'wec_logo.png', height: "28"
+      -# %img{:height => "28", :src => "https://bulma.io/images/bulma-logo.png", :width => "112"}/
+    %a.navbar-burger{"aria-expanded" => "false", "aria-label" => "menu", "data-target" => "navbarSmsWec", :role => "button"}
+      %span{"aria-hidden" => "true"}
+      %span{"aria-hidden" => "true"}
+      %span{"aria-hidden" => "true"}
+  #navbarSmsWec.navbar-menu
+    .navbar-start
+      %a.navbar-item
+      = link_to root_path, class: 'navbar-item' do
+        WEC SMS
+      %a.navbar-item
+        About us
+      - if user_signed_in?
+        - if user_signed_in_non_student?
+          .navbar-item.has-dropdown.is-hoverable
+            %a.navbar-link
+              = current_user.username
+              = render 'users/roles', user: current_user
+            .navbar-dropdown
+              = link_to user_path(current_user), class: "navbar-item" do
+                = current_user.username
+                your dashboard
+              - if current_user.has_role?(:admin)
+                = link_to new_student_path, class: "navbar-item" do
+                  New Student
+                = link_to new_user_path, class: "navbar-item" do
+                  New User
+                = link_to new_school_path, class: "navbar-item" do
+                  New School    
+              %hr.navbar-divider/
+              = link_to root_path, class: 'navbar-item' do
+                back to home page
+        - elsif user_signed_in_student?
+          .navbar-item.has-dropdown.is-hoverable
+            %a.navbar-link
+              = current_user.username 
+            .navbar-dropdown
+              = link_to student_path(current_user), class: "navbar-item" do
+                = current_user.username
+                your dashboard
+              %hr.navbar-divider/
+              = link_to root_path, class: 'navbar-item' do
+                back to home page    
+    .navbar-end
+      .navbar-item
+        /.buttons
+        - if user_signed_in?  
+          = link_to sessions_logout_path, method: :delete, class: "button is-danger" do
+            Log out
         - else
-          %li.nav-item
-            /%a.nav-link.active{"aria-current" => "page", :href => "#"} Home
-            = link_to sessions_login_path, class: "btn btn-sm btn-success" do
+          = link_to sessions_login_path, class: "button is-primary" do
+            %strong 
               Log in
-- if user_signed_in?
-  %ul.nav.justify-content-center.bg-warning.mb-3
-    - if user_signed_in_non_student?
-      %li.nav-item
-        /%a.nav-link.active{"aria-current" => "page", :href => "#"} Active
-        = link_to user_path(current_user), class: "nav-link" do
-          = current_user.username
-    - elsif user_signed_in_student?
-      %li.nav-item
-        /%a.nav-link.active{"aria-current" => "page", :href => "#"} Active
-        = link_to student_path(current_user), class: "nav-link" do
-          = current_user.username
-    %li.nav-item
-      %a.nav-link{:href => "#"} Link
-    %li.nav-item
-      %a.nav-link{:href => "#"} Link
-    %li.nav-item
-      %a.nav-link.disabled{"aria-disabled" => "true", :href => "#", :tabindex => "-1"} Disabled

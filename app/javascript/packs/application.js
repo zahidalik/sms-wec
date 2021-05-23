@@ -16,10 +16,20 @@ require("channels")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-// require('jquery');
+//require("jquery");
 // require('popper.js');
 // require('bootstrap');
 // import 'popper.js/core';
 //import 'bootstrap/dist/js/bootstrap'
-import 'bootstrap/dist/css/bootstrap'
+//import 'bootstrap/dist/css/bootstrap'
+import 'bulma'
+import "@fortawesome/fontawesome-free/css/all"
 require("stylesheets/application.scss")
+
+// To make Bulma dropdown work
+document.addEventListener('DOMContentLoaded', function () {
+  var dropdown = document.querySelector('.dropdown');
+  dropdown.addEventListener('click', function(event) {                      
+     dropdown.classList.toggle('is-active');
+  });
+});

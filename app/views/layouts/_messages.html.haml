@@ -1,5 +1,6 @@
 - flash.each do |name, msg|
   - if name.is_a?(String)
-    %div{:class => "alert alert-#{name.to_s == 'success' ? 'success' : 'danger'}", :role => "alert"}
-      /%button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} x
-      = content_tag :div, msg, :id => "flash_#{name}"
+    %div{:class => "message #{name.to_s == 'success' ? 'is-primary' : 'is-danger'}"}
+      /= content_tag :div, msg, :id => "flash_#{name}"
+      .message-body
+        = msg

@@ -1,0 +1,17 @@
+%h3.text-center All Standards        
+%table.table.table-hover.table-bordered
+  %thead
+    %tr
+      %th{:scope => "col"} Name
+      %th{:scope => "col"} Section
+      %th{:scope => "col"} Class Teacher
+  - @school_standards.each do |standard|
+    %tbody
+      %tr
+        %th{:scope => "row"} 
+          /= link_to standard_path(standard) do
+          = standard.name
+        %td
+          = standard.section
+        %td
+          = standard.class_teacher

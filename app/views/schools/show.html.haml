@@ -1,0 +1,38 @@
+.card 
+  .card-header 
+    %h3 
+      = @school.name
+  .card-body
+    %p 
+      School Head:
+      = @school.head
+    %p 
+      School Deputy Head:
+      = @school.deputy_head
+    %p
+      School Academic Head:
+      = @school.academic_head
+    %p
+      School Assistant Academic Head:
+      = @school.assistant_a_h
+    %p
+      School Islamic Deputy Head:
+      = @school.islamic_deputy
+    %p
+      School Environment Incharge
+      = @school.environment_incharge
+  .card-footer
+    %small.text-muted
+      School record was created on:
+      = @school.created_at.strftime("%A %d of %B, %Y")
+.card
+  .card-header
+    %h3 
+      Class in
+      = @school.name
+  .card-body
+    - @school.standards.each do |standard|
+      %ul
+        %li
+          = standard.name
+          = standard.section 

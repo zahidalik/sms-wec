@@ -7,6 +7,25 @@ Rails.application.routes.draw do
     delete 'logout' => :destroy
   end
 
-  resources :users
-  resources :students
+  # resources :users
+  # resources :students
+  # resources :schools
+
+  resources :users do
+    resources :user_schools, only: [:new, :create]
+    resources :schools, only: [:index] do
+      resources :user_standard_academic_year, only: [:new, :create]
+    end
+  end
+
+  resources :students do
+    resources :student_schools, only: [:new, :create]
+    resources :schools, only: [:index] do
+      resources :student_standard_academic_year, only: [:new,:create]
+    end
+  end
+
+  resources :schools, shallow: true do
+    resources :standards
+  end
 end

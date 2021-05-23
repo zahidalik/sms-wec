@@ -1,0 +1,32 @@
+%article.panel.is-info
+  %p.panel-heading
+    = user.full_name
+    's dashbord
+  %p.panel-tabs
+    = link_to users_url do 
+      All Users
+    = link_to students_url do 
+      All Students
+    = link_to schools_url do 
+      All Schools 
+  .panel-block
+    %p.control.has-icons-left
+      %input.input.is-info{:placeholder => "Search", :type => "text"}/
+      %span.icon.is-left
+        %i.fas.fa-search{"aria-hidden" => "true"}
+  %a.panel-block
+    %span.panel-icon
+      %i.fas.fa-book{"aria-hidden" => "true"}
+    bulma
+  %a.panel-block
+    %span.panel-icon
+      %i.fas.fa-book{"aria-hidden" => "true"}
+    marksheet
+  %a.panel-block
+    %span.panel-icon
+      %i.fas.fa-book{"aria-hidden" => "true"}
+    minireset.css
+  %a.panel-block
+    %span.panel-icon
+      %i.fas.fa-book{"aria-hidden" => "true"}
+    jgthms.github.io
