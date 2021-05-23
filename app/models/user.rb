@@ -11,6 +11,9 @@ class User < ApplicationRecord
   has_many :user_standard_academic_years
   has_many :standards, through: :user_standard_academic_years
 
+  has_many :user_schools
+  has_many :schools, through: :user_schools
+
   extend FriendlyId
   friendly_id :username, use: :slugged
 
