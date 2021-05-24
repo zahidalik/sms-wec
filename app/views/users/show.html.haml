@@ -36,4 +36,6 @@
               = @user.address
             - if current_user.has_role?(:admin)
               = link_to edit_user_path(@user), class: "button is-warning" do 
-                Edit user  
+                Edit user
+- if current_user.has_role?(:admin)
+  = render 'users/admin_actions'
