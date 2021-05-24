@@ -3,11 +3,11 @@
     = user.full_name
     's dashbord
   %p.panel-tabs
-    %a All
-    %a Public
-    %a Private
-    %a Sources
-    %a Forks
+    %a My Schools
+    %a My Classes
+    %a My Students
+    %a My Exams
+    %a My Markings
   .panel-block
     %p.control.has-icons-left
       %input.input.is-info{:placeholder => "Search", :type => "text"}/
@@ -15,12 +15,26 @@
         %i.fas.fa-search{"aria-hidden" => "true"}
   %a.panel-block
     %span.panel-icon
-      %i.fas.fa-book{"aria-hidden" => "true"}
-    bulma
+      %i.fas.fa-school{"aria-hidden" => "true"}
+    My schools
+    %a.panel-block
+      - if @user.schools.any?        
+        - @user.schools.each do |school|
+          .has-text-success
+            = school.name
+          ;
   %a.panel-block
     %span.panel-icon
       %i.fas.fa-book{"aria-hidden" => "true"}
-    marksheet
+    My Classes
+    %a.panel-block
+      - if @user.standards.any?      
+        - @user.standards.each do |standard|
+          .has-text-primary
+            = standard.name
+          ;
+      - else
+        .has-text-danger No class allocated to you    
   %a.panel-block
     %span.panel-icon
       %i.fas.fa-book{"aria-hidden" => "true"}

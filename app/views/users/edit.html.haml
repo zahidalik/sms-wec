@@ -1,14 +1,9 @@
-.row
-  .col-2
-  .col-8
-    .card
-      .card-header
-        Edit
-        = @user.full_name
-        Account
-      .card-body
-        = render 'form'
-      .card-footer
-        = link_to user_path(@user), class: "button is-success" do
-          Back
-  .col-2
+.box
+  .label.has-text-centered.is-size-4
+    Edit
+    = @user.full_name
+    's Account
+  = render 'form'
+  %hr
+  = link_to user_path(@user), class: "button is-link" do
+    Back

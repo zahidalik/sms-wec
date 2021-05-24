@@ -2,8 +2,8 @@
   .column.is-four-fifths
     - if @user.has_role?(:admin)
       = render 'users/admin_show', user: @user
-    - elsif @user.has_role?(:teacher)
-      = render 'users/admin_show', user: @user
+    - if @user.has_role?(:teacher)
+      = render 'users/teacher_show', user: @user
   .column.is-one-fifth   
     .dropdown
       .dropdown-trigger

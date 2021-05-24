@@ -1,17 +1,19 @@
 = simple_form_for @user do |f|
   = f.error_notification
-  .form-inputs
-    = f.input :username
-    = f.input :email
-    = f.input :full_name
-    = f.input :mobile
-    = f.input :address
-    = f.input :password
-    = f.input :password_confirmation
+  = f.input :username
+  = f.input :email
+  = f.input :full_name
+  = f.input :mobile
+  = f.input :address
+  = f.input :password
+  = f.input :password_confirmation
+  .label
     = f.label :avatar
+  .input
     = f.file_field :avatar
+  .label Roles for the new user
+  .input
     = f.collection_check_boxes :role_ids, Role.all, :id, :name
-    = f.error :roles, class: "text-danger"
-  %br
-  .form-actions
-    = f.submit "Create user account", class: 'btn btn-success'
+  = f.error :roles, class: "has-text-danger"
+  %hr
+  = f.button :submit, class: "button is-success"

@@ -1,12 +1,6 @@
-.row
-  .col-2
-  .col-8
-    .card
-      .card-header
-        New Student Account
-      .card-body
-        = render 'form'
-      .card-footer
-        = link_to user_path(current_user), class: "btn btn-primary" do
-          Back
-  .col-2
+.box
+  .label.has-text-centered.is-size-4  New Student Account
+  = render 'form'
+  %hr
+  = link_to user_path(current_user), class: "button is-link" do
+    Back

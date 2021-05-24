@@ -1,4 +1,6 @@
-%h3.text-center New School
-.card
-  .card-body
-    = render 'form'
+.box
+  .label.has-text-centered.is-size-4  New School Account
+  = render 'form'
+  %hr
+  = link_to user_path(current_user), class: "button is-link" do
+    Back
