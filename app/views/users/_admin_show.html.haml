@@ -1,13 +1,16 @@
 %article.panel.is-info
   %p.panel-heading
-    = user.full_name
-    's dashbord
+    = user.full_name + "'s"
+    dashbord
   %p.panel-tabs
     = link_to users_url do 
+      %i.fa.fa-users
       All Users
-    = link_to students_url do 
+    = link_to students_url do
+      %i.fa.fa-user-graduate
       All Students
-    = link_to schools_url do 
+    = link_to schools_url do
+      %i.fa.fa-school 
       All Schools 
   .panel-block
     %p.control.has-icons-left

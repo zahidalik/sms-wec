@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: [:show]
+  before_action :set_student, only: [:show, :edit, :update]
 
   def index
     @students = Student.all
@@ -27,6 +27,18 @@ class StudentsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @student.update(student_params)
+      flash[:success] = "Student account updated successfully"
+      redirect_to student_path(@student)
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def set_student
@@ -34,6 +46,6 @@ class StudentsController < ApplicationController
   end
 
   def student_params
-    params.require(:student).permit(:username, :email, :contact, :address, :father, :mother, :password, :password_confirmation, :full_name)
+    params.require(:student).permit(:username, :email, :contact, :address, :father, :mother, :password, :password_confirmation, :full_name, :avatar)
   end
 end

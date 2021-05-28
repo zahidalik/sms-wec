@@ -1,12 +1,13 @@
-.level
-  .level-item
-    .box
-      .label.has-text-centered.is-size-3 Log in
-      = simple_form_for(:sessions, url: sessions_signin_path) do |f|
-        .field
-          = f.input :username
-        .field
-          = f.input :password
-        = f.submit "Log in", class: "button is-primary"
-      %br
-      = link_to "Home", root_path, class: "button is-info"
+.section.is-small.has-background-link-light
+  .level
+    .level-item
+      .box.has-background-success-light
+        .label.has-text-centered.is-size-3 Log in
+        = simple_form_for(:sessions, url: sessions_signin_path) do |f|
+          .field
+            = f.input :username
+          .field
+            = f.input :password
+          = f.submit "Log in", class: "button is-primary"
+        %br
+        = link_to "Home", root_path, class: "button is-info"

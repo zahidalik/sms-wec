@@ -7,7 +7,7 @@
   .column.is-one-fifth   
     .dropdown
       .dropdown-trigger
-        %button.button{"aria-controls" => "dropdown-menu", "aria-haspopup" => "true"}
+        %button.button.is-medium{"aria-controls" => "dropdown-menu", "aria-haspopup" => "true"}
           %span My profile
           %span.icon.is-small
             %i.fas.fa-angle-down{"aria-hidden" => "true"}
@@ -17,7 +17,7 @@
             .media-right
               %figure.image.is-128x128
                 - if @user.avatar.present?
-                  = image_tag @user.avatar
+                  = image_tag @user.avatar, class: "is-rounded"
           .field.has-text-centered
             %strong Full Name:
             %br
@@ -38,4 +38,4 @@
               = link_to edit_user_path(@user), class: "button is-warning" do 
                 Edit user
 - if current_user.has_role?(:admin)
-  = render 'users/admin_actions'
+  = render "users/admin_actions"

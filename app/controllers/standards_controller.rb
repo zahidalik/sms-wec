@@ -5,7 +5,7 @@ class StandardsController < ApplicationController
   end
   
   def show
-    @school = School.friendly.find(params[:id])
-    # @school_standard = @school.standards.find(params[:id])
+    # @school = School.friendly.find(params[:id])
+    @standard = Standard.friendly.find(params[:id])
   end
 end

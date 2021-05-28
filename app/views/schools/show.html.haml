@@ -35,4 +35,7 @@
       %ul
         %li
           = standard.name
-          = standard.section 
+          = standard.section
+          - if current_user.has_role?(:admin)
+            = link_to new_user_standard_user_standard_academic_year_url(@user, standard), class: "button is-link" do
+              "Click to add the user to this Class"

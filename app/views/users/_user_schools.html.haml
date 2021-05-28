@@ -1,0 +1,21 @@
+- if user.schools.any?
+  %section.hero.is-info
+    .hero-body
+      %p.title.has-text-centered
+        = user.full_name + "'s"
+        Schools
+      %p    
+      %p.subtitle.has-text-centered
+        - user.schools.each do |school|
+          %span.tag.is-link-is-large
+            = school.name
+            |
+            = link_to user_school_url(user, school) do
+              %i.fa.fa-link
+- else
+  %section.hero.is-danger
+    .hero-body
+      %p.title.has-text-centered
+        No schools
+      %p.subtitle.has-text-centered
+        You can add schools to the user

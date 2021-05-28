@@ -1,0 +1,21 @@
+.section.is-medium
+  .tile.is-ancestor
+    .tile
+      .tile.is-parent.is-4
+        %article.tile.is-child.notification.is-info
+          .title
+            %i.fa.fa-user
+            = @user.full_name
+      .tile.is-parent.is-2
+        %article.tile.is-child.notification.is-link.has-text-centered
+          .title
+            %i.fa.fa-arrow-right
+      .tile.is-parent.is-6
+        %article.tile.is-child.notification.is-primary
+          .title
+            %i.fa.fa-school
+            = @standard.name
+  .level
+    .level-item
+      -# = link_to user_school_user_schools_path, method: :post, class: "button is-success is-large" do
+        -# Add this user to the school

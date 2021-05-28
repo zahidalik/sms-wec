@@ -2,10 +2,16 @@ class SchoolsController < ApplicationController
   before_action :authenticate_admin!, only: [:new, :create]
 
   def index
+    if params[:user_id]
+      @user = User.friendly.find(params[:user_id])
+    end
     @schools = School.all
   end
 
   def show
+    if params[:user_id]
+      @user = User.friendly.find(params[:user_id])
+    end
     @school = School.friendly.find(params[:id])
   end
   
