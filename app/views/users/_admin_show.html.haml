@@ -2,34 +2,52 @@
   %p.panel-heading
     = user.full_name + "'s"
     dashbord
-  %p.panel-tabs
-    = link_to users_url do 
-      %i.fa.fa-users
-      All Users
-    = link_to students_url do
-      %i.fa.fa-user-graduate
-      All Students
-    = link_to schools_url do
-      %i.fa.fa-school 
-      All Schools 
   .panel-block
     %p.control.has-icons-left
       %input.input.is-info{:placeholder => "Search", :type => "text"}/
       %span.icon.is-left
         %i.fas.fa-search{"aria-hidden" => "true"}
-  %a.panel-block
+  = link_to new_user_url, class: "panel-block" do
     %span.panel-icon
-      %i.fas.fa-book{"aria-hidden" => "true"}
-    bulma
-  %a.panel-block
+      %i.fas.fa-user{"aria-hidden" => "true"}
+    New user
+  = link_to new_school_url, class: "panel-block" do
     %span.panel-icon
-      %i.fas.fa-book{"aria-hidden" => "true"}
-    marksheet
-  %a.panel-block
+      %i.fas.fa-school{"aria-hidden" => "true"}
+    New school
+  = link_to new_student_url, class: "panel-block" do
     %span.panel-icon
-      %i.fas.fa-book{"aria-hidden" => "true"}
-    minireset.css
-  %a.panel-block
+      %i.fas.fa-user-graduate{"aria-hidden" => "true"}
+    New student
+  = link_to users_url, class: "panel-block" do
     %span.panel-icon
-      %i.fas.fa-book{"aria-hidden" => "true"}
-    jgthms.github.io
+      %i.fas.fa-users{"aria-hidden" => "true"}
+    All users
+  = link_to schools_url, class: "panel-block" do
+    %span.panel-icon
+      %i.fas.fa-building{"aria-hidden" => "true"}
+    All schools
+  = link_to students_url, class: "panel-block" do
+    %span.panel-icon
+      %i.fas.fa-graduation-cap{"aria-hidden" => "true"}
+    All students
+  - if @user.schools.any?        
+    = link_to user_schools_url(@user), class: "panel-block" do
+      %span.panel-icon
+        %i.fas.fa-building.has-text-success{"aria-hidden" => "true"}
+      My schools
+  - else
+    %a.panel-block
+      %span.panel-icon
+        %i.fas.fa-times-circle.has-text-danger{"aria-hidden" => "true"}
+      No schools allocated to you
+  - if @user.standards.any?        
+    = link_to user_standards_url(@user), class: "panel-block" do
+      %span.panel-icon
+        %i.fas.fa-chalkboard-teacher.has-text-success{"aria-hidden" => "true"}
+      My classes
+  - else
+    %a.panel-block
+      %span.panel-icon
+        %i.fas.fa-times-circle.has-text-danger{"aria-hidden" => "true"}
+      No classes allocated to you

@@ -1,17 +1,40 @@
-%h3.text-center All Standards        
-%table.table.table-hover.table-bordered
+.columns
+  %div{class: "column #{current_user.has_role?(:admin) ? 'is-four-fifths' : 'is-full'}"} 
+    .title.has-text-centered
+      - if @user
+        = @user.full_name + "'s classes"
+      - else 
+        All Classes in
+        = @school.name
+  - if current_user.has_role?(:admin) && !params[:user_id]
+    .column.is-one-fifth
+      = link_to new_school_standard_url(@school), class: "button is-link is-pulled-right" do
+        Create new class         
+%table.table.is-hoverable.is-fullwidth.is-striped.has-background-info-light
   %thead
     %tr
       %th{:scope => "col"} Name
       %th{:scope => "col"} Section
       %th{:scope => "col"} Class Teacher
-  - @school_standards.each do |standard|
-    %tbody
-      %tr
-        %th{:scope => "row"} 
-          = link_to standard_path(standard) do
-            = standard.name
-        %td
-          = standard.section
-        %td
-          = standard.class_teacher
+  - if @school_standards
+    - @school_standards.each do |standard|
+      %tbody
+        %tr
+          %th{:scope => "row"} 
+            = link_to standard_path(standard) do
+              = standard.name
+          %td
+            = standard.section
+          %td
+            = standard.class_teacher
+  - if @user_standards
+    - @user_standards.each do |standard|
+      %tbody
+        %tr
+          %th{:scope => "row"} 
+            = link_to standard_path(standard) do
+              = standard.name
+          %td
+            = standard.section
+          %td
+            = standard.class_teacher

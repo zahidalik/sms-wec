@@ -1,0 +1,16 @@
+.level
+  .level-item
+    .tabs.is-toggle.is-toggle-rounded.is-small
+      %ul
+        %li.is-active
+          %span
+            = link_to student_path(current_user) do
+              %span.icon.is-small
+                %i.fas.fa-user-graduate
+              = current_user.username
+        %li
+          %span
+            = link_to root_path do
+              %span.icon.is-small
+                %i.fas.fa-home
+              Home page

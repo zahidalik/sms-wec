@@ -3,6 +3,10 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    if params[:school_id]
+      @school = School.friendly.find(params[:school_id])
+      @school_users = @school.users.all
+    end
   end
 
   def show

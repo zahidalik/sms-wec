@@ -1,31 +1,27 @@
-- if current_user.has_role?(:admin)            
-  - if params[:user_id]
-    = render 'users/user_schools', user: @user
-    %br
-      %article.message.is-link
-        .message-header.is-size-5 Choose from the list below to create a new account of the user in the selected school           
-
-.title.has-text-centered All Schools
-.level
-  .level-item  
-    %table.table.is-fullwidth.is-hoverable.has-background-link-light
-      %thead
-        %tr
-          %th{:scope => "col"} School
-          %th{:scope => "col"} Head of the school
-          %th{:scope => "col"} Deputy Head
-          %th{:scope => "col"} Schools
-      - @schools.each do |school|
-        %tbody
+- if params[:user_id]
+  = render 'users/user_schools', user: @user
+- if current_user.has_role?(:admin)
+  .title.has-text-centered All Schools
+  .level
+    .level-item  
+      %table.table.is-fullwidth.is-hoverable.has-background-link-light
+        %thead
           %tr
-            %th{:scope => "row"}
-              = school_link(school)
-            %td
-              = school.head
-            %td
-              = school.deputy_head
-            %td
-              = link_to school_standards_path(school), class: "btn btn-sm btn-primary" do
-                Classes in
-                = school.name
-      
+            %th{:scope => "col"} School
+            %th{:scope => "col"} Head of the school
+            %th{:scope => "col"} Deputy Head
+            %th{:scope => "col"} Schools
+        - @schools.each do |school|
+          %tbody
+            %tr
+              %th{:scope => "row"}
+                = school_link(school)
+              %td
+                = school.head
+              %td
+                = school.deputy_head
+              %td
+                = link_to school_standards_path(school), class: "btn btn-sm btn-primary" do
+                  Classes in
+                  = school.name
+  

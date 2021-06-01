@@ -1,0 +1,22 @@
+.is-size-4.has-text-centered.has-background-light Teacher Classes
+%table.table.is-fullwidth.is-hoverable.has-background-success-light
+  %thead
+    %tr
+      %th{:scope => "col"} School Related
+      %th{:scope => "col"} Teacher Action
+  %tbody
+    %tr
+      %th{:scope => "row"} My Classes
+      %td
+        = link_to user_standards_url(@user) do
+          Show my classes
+    %tr
+      %th{:scope => "row"} My Students
+      %td
+        = link_to user_standards_url(@user) do
+          Show my students
+    -# %tr
+    -#   %th{:scope => "row"} Students
+    -#   %td
+    -#     = link_to school_students_url(@school) do
+    -#       Show all Students

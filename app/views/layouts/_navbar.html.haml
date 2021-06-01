@@ -14,38 +14,7 @@
       = link_to root_path, class: 'navbar-item' do
         WEC SMS
       %a.navbar-item
-        About us
-      - if user_signed_in?
-        - if user_signed_in_non_student?
-          .navbar-item.has-dropdown.is-hoverable
-            %a.navbar-link
-              = current_user.username
-              = render 'users/roles', user: current_user
-            .navbar-dropdown
-              = link_to user_path(current_user), class: "navbar-item" do
-                = current_user.username
-                your dashboard
-              - if current_user.has_role?(:admin)
-                = link_to new_student_path, class: "navbar-item" do
-                  New Student
-                = link_to new_user_path, class: "navbar-item" do
-                  New User
-                = link_to new_school_path, class: "navbar-item" do
-                  New School    
-              %hr.navbar-divider/
-              = link_to root_path, class: 'navbar-item' do
-                back to home page
-        - elsif user_signed_in_student?
-          .navbar-item.has-dropdown.is-hoverable
-            %a.navbar-link
-              = current_user.username 
-            .navbar-dropdown
-              = link_to student_path(current_user), class: "navbar-item" do
-                = current_user.username
-                your dashboard
-              %hr.navbar-divider/
-              = link_to root_path, class: 'navbar-item' do
-                back to home page    
+        About us    
     .navbar-end
       .navbar-item
         /.buttons
@@ -56,3 +25,8 @@
           = link_to sessions_login_path, class: "button is-primary" do
             %strong 
               Log in
+- if user_signed_in?
+  - if user_signed_in_non_student?
+    = render "layouts/users_nav_panel"
+  - elsif user_signed_in_student?
+    = render "layouts/students_nav_panel"

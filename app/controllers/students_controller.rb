@@ -3,6 +3,10 @@ class StudentsController < ApplicationController
 
   def index
     @students = Student.all
+    if params[:school_id]
+      @school = School.friendly.find(params[:school_id])
+      @school_students = @school.students.all
+    end
   end
 
   def show

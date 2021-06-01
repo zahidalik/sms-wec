@@ -5,37 +5,32 @@
     - if @user.has_role?(:teacher)
       = render 'users/teacher_show', user: @user
   .column.is-one-fifth   
-    .dropdown
-      .dropdown-trigger
-        %button.button.is-medium{"aria-controls" => "dropdown-menu", "aria-haspopup" => "true"}
-          %span My profile
-          %span.icon.is-small
-            %i.fas.fa-angle-down{"aria-hidden" => "true"}
-      #dropdown-menu.dropdown-menu{:role => "menu"}
-        .box
-          .media
-            .media-right
-              %figure.image.is-128x128
-                - if @user.avatar.present?
-                  = image_tag @user.avatar, class: "is-rounded"
-          .field.has-text-centered
-            %strong Full Name:
-            %br
-            = @user.full_name
-            %p
-              %strong Username:
-              %br
-              = @user.username
-            %p
-              %strong Contact Number:
-              %br
-              = @user.mobile
-            %p
-              %strong Address:
-              %br
-              = @user.address
-            - if current_user.has_role?(:admin)
-              = link_to edit_user_path(@user), class: "button is-warning" do 
-                Edit user
-- if current_user.has_role?(:admin)
-  = render "users/admin_actions"
+    .card
+      .card-image
+        .image-is-4x3
+          - if @user.avatar.present?
+            = image_tag @user.avatar
+          - else
+            = image_tag "bulma.png"
+      .card-content     
+        %strong Full Name:
+        %br
+        = @user.full_name
+        %p
+          %strong Username:
+          %br
+          = @user.username
+        %p
+          %strong Contact Number:
+          %br
+          = @user.mobile
+        %p
+          %strong Address:
+          %br
+          = @user.address
+      - if current_user.has_role?(:admin)
+        .card-footer 
+          .card-footer-item 
+            = link_to edit_user_path(@user), class: "button is-warning" do 
+              Edit user
+= admin_add_school_button

@@ -1,17 +1,12 @@
-.title.has-text-centered All Students        
+.title.has-text-centered
+  = student_index_name        
 %table.table.is-fullwidth.is-hoverable.has-background-link-light
   %thead
     %tr
       %th{:scope => "col"} Full Name
       %th{:scope => "col"} Father
       %th{:scope => "col"} Contact
-  - @students.each do |student|
-    %tbody
-      %tr
-        %th{:scope => "row"} 
-          = link_to student_path(student) do
-            = student.full_name
-        %td
-          = student.father
-        %td
-          = student.contact
+  - if @school_students
+    = render "students/school_students_index"
+  - else
+    = render "students/students_index"

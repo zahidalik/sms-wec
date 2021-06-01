@@ -1,0 +1,10 @@
+- @students.each do |student|
+  %tbody
+    %tr
+      %th{:scope => "row"} 
+        = link_to student_path(student) do
+          = student.full_name
+      %td
+        = student.father
+      %td
+        = student.contact

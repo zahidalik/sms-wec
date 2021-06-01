@@ -1,0 +1,12 @@
+- @users.each do |user|
+  %tbody
+    %tr
+      %th{:scope => "row"} 
+        = link_to user_path(user) do
+          = user.full_name
+      %td
+        = user.email
+      %td
+        = user.mobile
+      %td
+        = render 'users/roles', user: user

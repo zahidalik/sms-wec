@@ -32,5 +32,8 @@ Rails.application.routes.draw do
 
   resources :schools, shallow: true do
     resources :standards
+    resources :users
+    resources :students
   end
+
 end

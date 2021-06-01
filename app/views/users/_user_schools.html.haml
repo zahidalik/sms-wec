@@ -7,7 +7,7 @@
       %p    
       %p.subtitle.has-text-centered
         - user.schools.each do |school|
-          %span.tag.is-link-is-large
+          %span.tag.is-link.is-light.is-medium
             = school.name
             |
             = link_to user_school_url(user, school) do
@@ -17,5 +17,6 @@
     .hero-body
       %p.title.has-text-centered
         No schools
-      %p.subtitle.has-text-centered
-        You can add schools to the user
+- if current_user.has_role?(:admin)
+  %br/
+  .notification.is-link.has-text-centered Choose from the list below to create a new account of the user in the selected school           

@@ -1,0 +1,14 @@
+- unless controller_name == "users" && action_name == "show" && params[:id] == current_user.username
+  .level
+    .level-item
+      .tabs.is-toggle.is-toggle-rounded.is-small
+        %ul
+          %li.is-active
+            %span
+              = link_to user_path(current_user) do
+                %span.icon.is-small
+                  %i.fas.fa-user
+                = current_user.username
+                = render 'users/roles', user: current_user
+          - if current_user.has_role?(:admin)
+            = render "layouts/admin_nav_panel"

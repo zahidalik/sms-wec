@@ -1,29 +1,31 @@
 %article.panel.is-info
   %p.panel-heading
-    = user.full_name
-    's dashbord
-  %p.panel-tabs
-    %a My Schools
-    %a My Classes
-    %a My Students
-    %a My Exams
-    %a My Markings
+    = user.full_name + "'s dashbord"
   .panel-block
     %p.control.has-icons-left
       %input.input.is-info{:placeholder => "Search", :type => "text"}/
       %span.icon.is-left
         %i.fas.fa-search{"aria-hidden" => "true"}
-  %a.panel-block
-    %span.panel-icon
-      %i.fas.fa-school{"aria-hidden" => "true"}
-    My schools
-    .panel-tabs
-      - if @user.schools.any?        
-        - @user.schools.each do |school|
-          = link_to user_school_url(@user, school) do
-            = school.name
-      - else
-        %a No schools allocated to you
+  - if @user.schools.any?        
+    = link_to user_schools_url(@user), class: "panel-block" do
+      %span.panel-icon
+        %i.fas.fa-building.has-text-success{"aria-hidden" => "true"}
+      My schools
+  - else
+    %a.panel-block
+      %span.panel-icon
+        %i.fas.fa-times-circle.has-text-danger{"aria-hidden" => "true"}
+      No schools allocated to you
+  - if @user.standards.any?        
+    = link_to user_standards_url(@user), class: "panel-block" do
+      %span.panel-icon
+        %i.fas.fa-chalkboard-teacher.has-text-success{"aria-hidden" => "true"}
+      My classes
+  - else
+    %a.panel-block
+      %span.panel-icon
+        %i.fas.fa-times-circle.has-text-danger{"aria-hidden" => "true"}
+      No classes allocated to you
   %a.panel-block
     %span.panel-icon
       %i.fas.fa-book{"aria-hidden" => "true"}
