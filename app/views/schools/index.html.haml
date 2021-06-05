@@ -10,7 +10,8 @@
             %th{:scope => "col"} School
             %th{:scope => "col"} Head of the school
             %th{:scope => "col"} Deputy Head
-            %th{:scope => "col"} Schools
+            %th{:scope => "col"} Classes
+            %th{:scope => "col"} Action
         - @schools.each do |school|
           %tbody
             %tr
@@ -21,7 +22,10 @@
               %td
                 = school.deputy_head
               %td
-                = link_to school_standards_path(school), class: "btn btn-sm btn-primary" do
+                = link_to school_standards_path(school), class: "button is-link is-small" do
                   Classes in
                   = school.name
+              %td
+                = link_to edit_school_path(school), class: "button is-warning is-small" do
+                  Edit
   

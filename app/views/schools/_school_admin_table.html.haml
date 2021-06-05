@@ -1,31 +1,46 @@
-.is-size-4.has-text-centered.has-background-light All Classes
-%table.table.is-fullwidth.is-hoverable.has-background-info-light
-  %thead
-    %tr
-      %th{:scope => "col"} School Related
-      %th{:scope => "col"} Admin Action
-      - if current_user.has_role?(:admin) && params[:user_id]
-        %th{:scope => "col"} Create User Account
-  %tbody
-    %tr
-      %th{:scope => "row"} Classes
-      %td
-        = link_to school_standards_url(@school) do
-          Show all classes
-    %tr
-      %th{:scope => "row"} Users
-      %td
-        = link_to school_users_url(@school) do
-          Show all Users
-    %tr
-      %th{:scope => "row"} Students
-      %td
-        = link_to school_students_url(@school) do
-          Show all Students
-      -# %td
-        -# = link_to school_standards_path(school), class: "btn btn-sm btn-primary" do
-        -#   Classes in
-        -#   = school.name
-        -# - if current_user.has_role?(:admin) && params[:user_id]
-        -#   = link_to new_user_standard_user_standard_academic_year_url(@user, standard), class: "button is-link" do
-        -#     "Click to add the user to this Class"
+.is-size-4.has-text-centered.has-background-light
+  .fa.fa-cogs.has-text-link
+  Admin
+.columns
+  .column.is-half
+    = link_to school_standards_url(@school), class: "button is-link is-fullwidth" do
+      .fa.fa-arrow-circle-right
+      All classes and Add a new class
+    %table.table.is-fullwidth.is-hoverable.has-background-info-light
+      %thead
+        %tr
+          %th{:scope => "col"} Class
+          %th{:scope => "col"} Section 
+          - if current_user.has_role?(:admin) && params[:user_id]
+            %th{:scope => "col"} Add User
+      %tbody
+        - @school.standards.each do |standard|
+          %tr
+            %th{:scope => "row"}
+              = link_to standard_url(standard) do
+                .fa.fa-link
+                = standard.name
+            %td
+              = standard.section
+            - if current_user.has_role?(:admin) && params[:user_id]
+              %td
+                = link_to new_user_standard_user_standard_academic_year_url(@user, standard), class: "button is-link is-small" do
+                  Add user to this class
+  .column.is-half
+    %table.table.is-fullwidth.is-hoverable.has-background-primary-light
+      %thead
+        %tr
+          %th{:scope => "col"} School related
+          %th{:scope => "col"} Action
+      %tbody
+        %tr
+          %th{:scope => "row"} Users
+          %td
+            = link_to school_users_url(@school), class: "button is-link is-small" do
+              Show all
+        %tr
+          %th{:scope => "row"} Students
+          %td
+            = link_to school_students_url(@school), class: "button is-link is-small" do
+              Show all
+%hr/

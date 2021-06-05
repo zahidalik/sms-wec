@@ -16,8 +16,8 @@ require("channels")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-//require("jquery");
-// require('popper.js');
+require('jquery');
+require('popper.js');
 // require('bootstrap');
 // import 'popper.js/core';
 //import 'bootstrap/dist/js/bootstrap'
@@ -25,11 +25,61 @@ require("channels")
 import 'bulma'
 import "@fortawesome/fontawesome-free/css/all"
 require("stylesheets/application.scss")
+import "animate.css"
+
+// /source/animate.css";
 
 // To make Bulma dropdown work
-document.addEventListener('DOMContentLoaded', function () {
-  var dropdown = document.querySelector('.dropdown');
-  dropdown.addEventListener('click', function(event) {                      
-     dropdown.classList.toggle('is-active');
-  });
-});
+// document.addEventListener('DOMContentLoaded', function () {
+//   var dropdown = document.querySelector('.dropdown');
+//   dropdown.addEventListener('click', function(event) {                      
+//      dropdown.classList.toggle('is-active');
+//   });
+// });
+
+// MODALS BULMA
+// document.addEventListener('DOMContentLoaded', function () {
+
+//   var rootEl = document.documentElement;
+//   var allModals = getAll('.modal');
+//   var modalButtons = getAll('.modal-button');
+//   var modalCloses = getAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button');
+
+//   if (modalButtons.length > 0) {
+//       modalButtons.forEach(function (el) {
+//           el.addEventListener('click', function () {
+//               var target = document.getElementById(el.dataset.target);
+//               rootEl.classList.add('is-clipped');
+//               target.classList.add('is-active');
+//           });
+//       });
+//   }
+
+//   if (modalCloses.length > 0) {
+//       modalCloses.forEach(function (el) {
+//           el.addEventListener('click', function () {
+//               closeModals();
+//           });
+//       });
+//   }
+
+//   document.addEventListener('keydown', function (event) {
+//       var e = event || window.event;
+//       if (e.keyCode === 27) {
+//           closeModals();
+//       }
+//   });
+
+//   function closeModals() {
+//       rootEl.classList.remove('is-clipped');
+//       allModals.forEach(function (el) {
+//           el.classList.remove('is-active');
+//       });
+//   }
+
+//   // Functions
+
+//   function getAll(selector) {
+//       return Array.prototype.slice.call(document.querySelectorAll(selector), 0);
+//   }
+// });

@@ -1,39 +1,45 @@
 .title.has-text-centered
   = @school.name
 .columns     
-  .column.is-two-thirds
+  .column.is-four-fifths
     - if user_signed_in_non_student?
       - if current_user.has_role?(:admin)
         = render "schools/school_admin_table"
       - if current_user.has_role?(:teacher) || current_user.has_role?(:admin) && params[:user_id] 
         = render "schools/school_teacher_table"
-  .column.is-one-third
+  .column.is-one-fifth
     .card.has-background-light
       .card-header
         .card-header-title
-          %i.fa.fa-id-card
+          .fa.fa-id-card.has-text-link
           Who's who?
-      .card-content
-        .content 
-          %ul 
-            %li
-              = @school.head
-              .tag.is-info School Head
-            %li
-              = @school.deputy_head
-              .tag.is-info School Deputy Head
-            %li
-              = @school.academic_head
-              .tag.is-info School Academic Head
-            %li
-              = @school.assistant_a_h
-              .tag.is-info School Assistant Academic Head
-            %li
-              = @school.islamic_deputy
-              .tag.is-info School Islamic Deputy
-            %li
-              = @school.environment_incharge
-              .tag.is-info School Environment Incharge
-        .content
+      .content
+        %ul 
+          %li 
+            %strong School Head:
+            %br
+            = @school.head
+          %li
+            %strong School Deputy Head:
+            %br
+            = @school.deputy_head
+          %li
+            %strong School Academic Head:
+            %br
+            = @school.academic_head
+          %li
+            %strong School Assistant Academic Head:
+            %br
+            = @school.assistant_a_h
+          %li
+            %strong School Islamic Deputy:
+            %br
+            = @school.islamic_deputy
+          %li
+            %strong School Environment Incharge:
+            %br
+            = @school.environment_incharge
+      .card-footer
+        .card-footer-item.is-size-7
           School account created at: 
           = @school.created_at.strftime("%A %d of %B, %Y")

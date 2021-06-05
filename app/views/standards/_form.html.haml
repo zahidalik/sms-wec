@@ -1,0 +1,6 @@
+= simple_form_for([@school, @standard]) do |f|
+  = f.error_notification
+  = f.input :name
+  = f.input :section
+  = f.input :class_teacher
+  = f.button :submit, class: "button is-success"

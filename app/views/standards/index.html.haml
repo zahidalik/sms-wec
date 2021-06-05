@@ -1,5 +1,5 @@
 .columns
-  %div{class: "column #{current_user.has_role?(:admin) ? 'is-four-fifths' : 'is-full'}"} 
+  %div{class: "column #{current_user.has_role?(:admin) && !params[:user_id] ? 'is-four-fifths' : 'is-full'}"} 
     .title.has-text-centered
       - if @user
         = @user.full_name + "'s classes"
@@ -8,8 +8,8 @@
         = @school.name
   - if current_user.has_role?(:admin) && !params[:user_id]
     .column.is-one-fifth
-      = link_to new_school_standard_url(@school), class: "button is-link is-pulled-right" do
-        Create new class         
+      = link_to new_school_standard_url(@school), class: 'button is-link is-pulled-right' do
+        Create new class
 %table.table.is-hoverable.is-fullwidth.is-striped.has-background-info-light
   %thead
     %tr
@@ -22,9 +22,11 @@
         %tr
           %th{:scope => "row"} 
             = link_to standard_path(standard) do
+              .fa.fa-link
               = standard.name
           %td
-            = standard.section
+            %strong
+              = standard.section
           %td
             = standard.class_teacher
   - if @user_standards

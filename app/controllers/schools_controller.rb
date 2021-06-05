@@ -1,5 +1,5 @@
 class SchoolsController < ApplicationController
-  before_action :authenticate_admin!, only: [:new, :create]
+  before_action :authenticate_admin!, only: [:new, :create, :edit, :update]
 
   def index
     if params[:user_id]
@@ -26,6 +26,21 @@ class SchoolsController < ApplicationController
       redirect_to school_path(@school)
     else
       render 'new'
+    end
+  end
+
+  def edit
+    @school = School.friendly.find(params[:id])
+  end
+
+  def update
+    @school = School.friendly.find(params[:id])
+    
+    if @school.update(school_params)
+      flash[:success] =  "School account info was updated successfully!"
+      redirect_to school_url(@school)
+    else
+      render 'edit'
     end
   end
 

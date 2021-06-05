@@ -15,4 +15,28 @@ class StandardsController < ApplicationController
     # @school = School.friendly.find(params[:id])
     @standard = Standard.friendly.find(params[:id])
   end
+
+  def new
+    @school = School.friendly.find(params[:school_id])
+    @standard = Standard.new
+  end
+
+  def create
+    @school = School.friendly.find(params[:school_id])
+    @standard = Standard.new(standard_params)
+    @standard.school_id = @school.id
+
+    if @standard.save
+      flash[:success] = "Account for standard/class was successfully created!"
+      redirect_to standard_url(@standard)
+    else
+      render "new"
+    end
+  end
+
+  private
+
+  def standard_params
+    params.require(:standard).permit(:name, :section, :class_teacher)
+  end
 end
