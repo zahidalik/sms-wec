@@ -10,4 +10,11 @@ module SchoolsHelper
       end
     end
   end
+
+  def add_user_to_class_with_count(user, standard)
+    user_class_count = UserStandardAcademicYear.where("user_id = :user_id AND standard_id= :standard_id", user_id: @user.id, standard_id: standard.id).count
+    link_to new_user_standard_user_standard_academic_year_url(user, standard), class: "button is-link is-small" do
+      "<span class='tag is-primary'>".html_safe +  user_class_count.to_s + "</span>".html_safe + "Add user to this class"
+    end
+  end
 end
