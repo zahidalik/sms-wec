@@ -4,15 +4,21 @@ class SchoolsController < ApplicationController
   def index
     if params[:user_id]
       @user = User.friendly.find(params[:user_id])
+    elsif params[:student_id]
+      @student = Student.friendly.find(params[:student_id])
     end
     @schools = School.all
   end
 
   def show
+    @school = School.friendly.find(params[:id])
     if params[:user_id]
       @user = User.friendly.find(params[:user_id])
+      @user_school_standards = @user.standards.where(school_id: @school.id)
+    elsif params[:student_id]
+      @student = Student.friendly.find(params[:student_id])
+      @student_school_standards = @student.standards.where(school_id: @school.id)
     end
-    @school = School.friendly.find(params[:id])
   end
   
   def new

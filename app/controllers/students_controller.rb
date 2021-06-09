@@ -1,5 +1,7 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update]
+  before_action :authenticate_admin!, only: [:new, :create, :edit, :update]
+  before_action :block_student!, only: [:index]
 
   def index
     @students = Student.all
@@ -47,6 +49,13 @@ class StudentsController < ApplicationController
 
   def set_student
     @student = Student.friendly.find(params[:id])
+  end
+
+  def block_student!
+    if user_signed_in_student?
+      flash[:danger] = "You are not authorised to perform the action"
+      redirect_to root_url
+    end
   end
 
   def student_params

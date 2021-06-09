@@ -9,3 +9,8 @@
         = student.father
       %td
         = student.contact
+      - if user_signed_in_non_student?
+        - if current_user.has_role?(:admin)
+          %td
+            = link_to edit_student_url(student), class: "button is-warning is-small" do
+              Edit

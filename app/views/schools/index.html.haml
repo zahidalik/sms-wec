@@ -1,31 +1,34 @@
 - if params[:user_id]
   = render 'users/user_schools', user: @user
-- if current_user.has_role?(:admin)
-  .title.has-text-centered All Schools
-  .level
-    .level-item  
-      %table.table.is-fullwidth.is-hoverable.has-background-link-light
-        %thead
-          %tr
-            %th{:scope => "col"} School
-            %th{:scope => "col"} Head of the school
-            %th{:scope => "col"} Deputy Head
-            %th{:scope => "col"} Classes
-            %th{:scope => "col"} Action
-        - @schools.each do |school|
-          %tbody
+- if params[:student_id]
+  = render 'students/student_schools', student: @student
+- if user_signed_in_non_student?
+  - if current_user.has_role?(:admin)
+    .title.has-text-centered All Schools
+    .level
+      .level-item  
+        %table.table.is-fullwidth.is-hoverable.has-background-link-light
+          %thead
             %tr
-              %th{:scope => "row"}
-                = school_link(school)
-              %td
-                = school.head
-              %td
-                = school.deputy_head
-              %td
-                = link_to school_standards_path(school), class: "button is-link is-small" do
-                  Classes in
-                  = school.name
-              %td
-                = link_to edit_school_path(school), class: "button is-warning is-small" do
-                  Edit
-  
+              %th{:scope => "col"} School
+              %th{:scope => "col"} Head of the school
+              %th{:scope => "col"} Deputy Head
+              %th{:scope => "col"} Classes
+              %th{:scope => "col"} Action
+          - @schools.each do |school|
+            %tbody
+              %tr
+                %th{:scope => "row"}
+                  = school_link(school)
+                %td
+                  = school.head
+                %td
+                  = school.deputy_head
+                %td
+                  = link_to school_standards_path(school), class: "button is-link is-small" do
+                    Classes in
+                    = school.name
+                %td
+                  = link_to edit_school_path(school), class: "button is-warning is-small" do
+                    Edit
+    

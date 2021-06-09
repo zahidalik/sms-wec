@@ -10,7 +10,13 @@
               = current_user.username
         %li
           %span
-            = link_to root_path do
+            = link_to student_schools_path(current_user) do
               %span.icon.is-small
-                %i.fas.fa-home
-              Home page
+                %i.fas.fa-building
+              My schools
+        %li
+          %span
+            = link_to student_standards_path(current_user) do
+              %span.icon.is-small
+                %i.fas.fa-school
+              My classes

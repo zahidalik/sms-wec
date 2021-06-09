@@ -23,10 +23,11 @@ Rails.application.routes.draw do
   end
 
   resources :students do
-    resources :standards, only: [:index, :show]
+    resources :standards, only: [:index, :show] do 
+      resources :student_standard_academic_year, only: [:new, :create]
+    end
     resources :schools, only: [:index, :show] do
       resources :student_schools, only: [:new, :create]
-      resources :student_standard_academic_year, only: [:new, :create]
     end
   end
 

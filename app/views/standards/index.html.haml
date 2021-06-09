@@ -1,21 +1,34 @@
 .columns
-  %div{class: "column #{current_user.has_role?(:admin) && !params[:user_id] ? 'is-four-fifths' : 'is-full'}"} 
-    .title.has-text-centered
-      - if @user
-        = @user.full_name + "'s classes"
-      - else 
-        All Classes in
-        = @school.name
-  - if current_user.has_role?(:admin) && !params[:user_id]
-    .column.is-one-fifth
-      = link_to new_school_standard_url(@school), class: 'button is-link is-pulled-right' do
-        Create new class
+  - if user_signed_in_non_student?
+    - if current_user.has_role?(:admin) && !params[:user_id] && !params[:student_id]
+      .column.is-four-fifths
+        .title.has-text-centered All Classes
+      .column.is-one-fifth
+        = link_to new_school_standard_url(@school), class: 'button is-link is-pulled-right' do
+          Create new class
+    - if current_user.has_role?(:admin) && params[:user_id]
+      .column.is-full
+        .title.has-text-centered
+          = @user.full_name + "'s classes"
+    - if current_user.has_role?(:admin) && params[:student_id]
+      .column.is-full
+        .title.has-text-centered
+          = @student.full_name + "'s classes"
+    - if @user
+      .column.is-full
+        .title.has-text-centered
+          My classes
+  - if user_signed_in_student?
+    .column.is-full
+      .title.has-text-centered
+        My classes
 %table.table.is-hoverable.is-fullwidth.is-striped.has-background-info-light
   %thead
     %tr
       %th{:scope => "col"} Name
       %th{:scope => "col"} Section
       %th{:scope => "col"} Class Teacher
+      %th{:scope => "col"} School
   - if @school_standards
     - @school_standards.each do |standard|
       %tbody
@@ -29,6 +42,8 @@
               = standard.section
           %td
             = standard.class_teacher
+          %td
+            = standard.school.name
   - if @user_standards
     - @user_standards.each do |standard|
       %tbody
@@ -40,3 +55,18 @@
             = standard.section
           %td
             = standard.class_teacher
+          %td
+            = standard.school.name
+  - if @student_standards
+    - @student_standards.each do |standard|
+      %tbody
+        %tr
+          %th{:scope => "row"} 
+            = link_to standard_path(standard) do
+              = standard.name
+          %td
+            = standard.section
+          %td
+            = standard.class_teacher
+          %td
+            = standard.school.name

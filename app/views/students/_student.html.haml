@@ -2,35 +2,27 @@
   .column.is-four-fifths
     %article.panel.is-info
       %p.panel-heading
-        = student.full_name + "'s"
-        dashbord
-      .panel-block
-        %p.control.has-icons-left
-          %input.input.is-info{:placeholder => "Search", :type => "text"}/
-          %span.icon.is-left
-            %i.fas.fa-search{"aria-hidden" => "true"}
-      %a.panel-block
-        %span.panel-icon
-          %i.fas.fa-school{"aria-hidden" => "true"}
-        My schools
-        .panel-tabs
-          - if student.schools.any?        
-            - student.schools.each do |school|
-              = link_to student_school_url(student, school) do
-                = school.name
-          - else
-            %a No schools allocated to you
-      %a.panel-block
-        %span.panel-icon
-          %i.fas.fa-book{"aria-hidden" => "true"}
-        My Classes
-        .panel-tabs
-          - if student.standards.any?
-            - student.standards.each do |standard|      
-              = link_to student_standard_url(student, standard) do
-                = standard.name
-          - else
-            %a No class allocated to you    
+        = student.full_name + "'s dashbord"
+      - if @student.schools.any?        
+        = link_to student_schools_url(@student), class: "panel-block" do
+          %span.panel-icon
+            %i.fas.fa-building.has-text-success{"aria-hidden" => "true"}
+          My schools
+      - else
+        %a.panel-block
+          %span.panel-icon
+            %i.fas.fa-times-circle.has-text-danger{"aria-hidden" => "true"}
+          No schools allocated to you
+      - if @student.standards.any?        
+        = link_to student_standards_url(@student), class: "panel-block" do
+          %span.panel-icon
+            %i.fas.fa-chalkboard-teacher.has-text-success{"aria-hidden" => "true"}
+          My classes
+      - else
+        %a.panel-block
+          %span.panel-icon
+            %i.fas.fa-times-circle.has-text-danger{"aria-hidden" => "true"}
+          No classes allocated to you    
       %a.panel-block
         %span.panel-icon
           %i.fas.fa-book{"aria-hidden" => "true"}
@@ -39,6 +31,7 @@
         %span.panel-icon
           %i.fas.fa-book{"aria-hidden" => "true"}
         jgthms.github.io
+    = admin_add_school_button_student
   .column.is-one-fifth   
     .card
       .card-image
@@ -81,35 +74,6 @@
             - if current_user.has_role?(:admin)
               = link_to edit_student_path(student), class: "button is-warning" do 
                 Edit student
-- if user_signed_in_non_student?
-  - if current_user.has_role?(:admin)
-    ADD SOME CODE HERE ADMIN!
 
--# .row
--#   .col-4
--#     .card
--#       -# %img.card-img-top{:alt => "", :src => ""}/
--#       .card-body
--#         %h5.card-title
--#           Full Name:
--#           = student.full_name
--#         %p.card-text
--#           Email:
--#           = student.email
--#         %p.card-text
--#           Contact Number:
--#           = student.contact
--#         %p.card-text
--#           Address:
--#           = student.address
--#         %p.card-text
--#           Father:
--#           = student.father
--#         %p.card-text
--#           Mother:
--#           = student.mother
--#       .card-footer
--#         %small.text-muted
--#           Student joined us on:
--#           = student.created_at.strftime("%A %d of %B, %Y")
--#   .col-8
+
+    

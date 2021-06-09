@@ -10,9 +10,12 @@
       %thead
         %tr
           %th{:scope => "col"} Class
-          %th{:scope => "col"} Section 
-          - if current_user.has_role?(:admin) && params[:user_id]
+          %th{:scope => "col"} Section
+          %th{:scope => "col"} Action
+          - if params[:user_id]
             %th{:scope => "col"} Add User
+          - if params[:student_id]
+            %th{:scope => "col"} Add Student
       %tbody
         - @school.standards.each do |standard|
           %tr
@@ -22,9 +25,16 @@
                 = standard.name
             %td
               = standard.section
-            - if current_user.has_role?(:admin) && params[:user_id]
+            %td
+              = link_to edit_standard_url(standard), class: "button is-warning is-small" do
+                Edit
+            - if params[:user_id] 
               %td
                 = add_user_to_class_with_count(@user, standard)
+            - if params[:student_id] 
+              %td
+                = link_to new_student_standard_student_standard_academic_year_url(@student, standard), class: "button is-link is-small" do
+                  Add student to this class
   .column.is-half
     %table.table.is-fullwidth.is-hoverable.has-background-primary-light
       %thead

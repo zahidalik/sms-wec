@@ -1,0 +1,25 @@
+- if student.schools.any?
+  %section.hero.is-info
+    .hero-body
+      %p.title.has-text-centered
+        = student.full_name + "'s Schools"
+      %p    
+      %p.subtitle.has-text-centered
+        - student.schools.each do |school|
+          %span.tag.is-link.is-light.is-medium
+            = school.name
+            |
+            = link_to student_school_url(student, school) do
+              %i.fa.fa-link
+- else
+  %section.hero.is-danger
+    .hero-body
+      %p.title.has-text-centered
+        No schools
+- if user_signed_in_non_student?
+  - if current_user.has_role?(:admin)
+    %br/
+    .notification.is-link.subtitle.is-light.has-text-centered.animate__animated.animate__slideInUp
+      Choose from the list below to create a new account of
+      = student.full_name 
+      in the selected school

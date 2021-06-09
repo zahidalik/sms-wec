@@ -5,7 +5,7 @@
         %article.tile.is-child.notification.is-info
           .title
             %i.fa.fa-user
-            = @user.full_name
+            = @student.full_name
       .tile.is-parent.is-2
         %article.tile.is-child.notification.is-link.has-text-centered
           .title
@@ -17,8 +17,8 @@
             = @school.name
   .level
     .level-item 
-      = link_to user_school_user_schools_path, method: :post, class: "button is-link is-medium" do
+      = link_to student_school_student_schools_path, method: :post, class: "button is-link is-medium" do
         Add
-        = @user.full_name
+        = @student.full_name 
         to
         = @school.name

@@ -4,6 +4,7 @@
       = render 'users/admin_show', user: @user
     - if @user.has_role?(:teacher)
       = render 'users/teacher_show', user: @user
+    = admin_add_school_button
   .column.is-one-fifth   
     .card
       .card-image
@@ -33,4 +34,3 @@
           .card-footer-item 
             = link_to edit_user_path(@user), class: "button is-warning" do 
               Edit user
-= admin_add_school_button

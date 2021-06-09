@@ -20,4 +20,6 @@
 - if current_user.has_role?(:admin)
   %br/
   .notification.is-link.subtitle.is-light.has-text-centered.animate__animated.animate__slideInUp
-    Choose from the list below to create a new account of the user in the selected school
+    Choose from the list below to create a new account of 
+    = user.full_name 
+    in the selected school

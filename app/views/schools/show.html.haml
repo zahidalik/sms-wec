@@ -7,6 +7,11 @@
         = render "schools/school_admin_table"
       - if current_user.has_role?(:teacher) || current_user.has_role?(:admin) && params[:user_id] 
         = render "schools/school_teacher_table"
+      - if current_user.has_role?(:admin) && params[:student_id] 
+        = render "schools/school_student_table"
+    - if user_signed_in_student?
+      - if @student
+        = render "schools/school_student_table"
   .column.is-one-fifth
     .card.has-background-light
       .card-header
@@ -43,3 +48,8 @@
         .card-footer-item.is-size-7
           School account created at: 
           = @school.created_at.strftime("%A %d of %B, %Y")
+        - if user_signed_in_non_student?
+          - if current_user.has_role?(:admin)
+            .card-footer-item.has-text-centered
+              = link_to edit_school_path(@school), class: "button is-warning is-small" do
+                Edit

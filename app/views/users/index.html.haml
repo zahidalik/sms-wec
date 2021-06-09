@@ -1,12 +1,15 @@
 .label.is-size-4.has-text-centered
   = user_index_name        
-%table.table.is-fullwidth.is-hoverable.is-bordered.is-striped
+%table.table.is-fullwidth.is-hoverable.has-background-info-light
   %thead
     %tr
       %th{:scope => "col"} Full Name
       %th{:scope => "col"} Email
       %th{:scope => "col"} Contact
       %th{:scope => "col"} Role(s)
+      - if current_user.has_role?(:admin)
+        %th{:scope => "col"} Action
+
   - if @school_users
     = render "users/school_users_index"
   - else

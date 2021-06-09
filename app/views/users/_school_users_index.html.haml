@@ -11,3 +11,7 @@
         = user.mobile
       %td
         = render 'users/roles', user: user
+      - if current_user.has_role?(:admin)
+        %td 
+          = link_to edit_user_url(user), class: "button is-warning is-small" do
+            Edit
