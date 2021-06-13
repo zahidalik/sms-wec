@@ -49,7 +49,7 @@
       %tbody
         %tr
           %th{:scope => "row"} 
-            = link_to standard_path(standard) do
+            = link_to user_standard_path(@user, standard) do
               = standard.name
           %td
             = standard.section
@@ -62,7 +62,7 @@
       %tbody
         %tr
           %th{:scope => "row"} 
-            = link_to standard_path(standard) do
+            = link_to student_standard_path(@student, standard) do
               = standard.name
           %td
             = standard.section

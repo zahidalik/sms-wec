@@ -13,7 +13,7 @@
     - @user_school_standards.each do |standard|
       %tr
         %th{:scope => "row"}
-          = link_to standard_url(standard) do
+          = link_to user_standard_url(@user,standard) do
             .fa.fa-link 
             = standard.name
         %td

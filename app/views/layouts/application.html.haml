@@ -15,6 +15,12 @@
       = yield
     %br
     .footer
+      %small
+        .fa.fa-info-circle
+        We have used vector illustrations from
+        = link_to "https://www.vecteezy.com/free-vector/vector" do
+          .fa.fa-globe-africa
+          Vecteezy
       .box
         - if Rails.env.development?
           = debug(params)

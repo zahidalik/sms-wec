@@ -1,36 +1,41 @@
-.columns
+.columns.is-multiline
+  .column.is-one-fifth
+    .column
+      .has-text-centered.has-backgroud-light
+        = image_tag "user-dashboard.jpg", height: '600', width: '500'
+        .p.title.has-text-centered
+          = @user.username + "'s" + " dashboard"
+    .column
+      %article.media
+        .media-content
+          = admin_add_school_button
   .column.is-four-fifths
-    - if @user.has_role?(:admin)
-      = render 'users/admin_show', user: @user
-    - if @user.has_role?(:teacher)
-      = render 'users/teacher_show', user: @user
-    = admin_add_school_button
-  .column.is-one-fifth   
-    .card
-      .card-image
-        .image-is-4x3
-          - if @user.avatar.present?
-            = image_tag @user.avatar
-          - else
-            = image_tag "bulma.png"
-      .card-content     
-        %strong Full Name:
-        %br
-        = @user.full_name
-        %p
-          %strong Username:
-          %br
-          = @user.username
-        %p
-          %strong Contact Number:
-          %br
-          = @user.mobile
-        %p
-          %strong Address:
-          %br
-          = @user.address
-      - if current_user.has_role?(:admin)
-        .card-footer 
-          .card-footer-item 
-            = link_to edit_user_path(@user), class: "button is-warning" do 
-              Edit user
+    .columns.is-multiline 
+      .column.is-full.pb-0
+        %article.media
+          %figure.media-left
+            %p.image.is-96x96
+              - if @user.avatar.present?
+                = image_tag @user.avatar
+              - else
+                = image_tag "bulma.png"
+          .media-content
+            .content
+              %strong Full Name:
+              = @user.full_name + ","
+              %p
+                %strong Username:
+                = @user.username + ","
+                %strong Contact Number:
+                = @user.mobile + ","
+                %strong Address:
+                = @user.address
+                - if current_user.has_role?(:admin)
+                  = link_to edit_user_path(@user), class: "button is-warning is-small" do 
+                    Edit user  
+      .column.is-full.pt-0
+        .media-content
+          - if @user.has_role?(:admin)
+            = render 'users/admin_show', user: @user
+          - if @user.has_role?(:teacher)
+            = render 'users/teacher_show', user: @user

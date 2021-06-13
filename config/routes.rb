@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :standards, only: [:index, :show] do
-      resources :user_standard_academic_year, only: [:new, :create]
+      resources :user_standard_academic_years, only: [:new, :create]
     end
     resources :schools, only: [:index, :show] do
       resources :user_schools, only: [:new, :create]
@@ -24,13 +24,13 @@ Rails.application.routes.draw do
 
   resources :students do
     resources :standards, only: [:index, :show] do 
-      resources :student_standard_academic_year, only: [:new, :create]
+      resources :student_standard_academic_years, only: [:new, :create]
     end
     resources :schools, only: [:index, :show] do
       resources :student_schools, only: [:new, :create]
     end
   end
-
+  
   resources :schools, shallow: true do
     resources :standards
     resources :users

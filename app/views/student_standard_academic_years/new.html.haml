@@ -1,6 +1,6 @@
 .level
   .level-item
-    = simple_form_for([@student, @standard, @student_standard], url: student_standard_student_standard_academic_year_index_url) do |f|
+    = simple_form_for([@student, @standard, @student_standard], url: student_standard_student_standard_academic_years_url) do |f|
       = f.error_notification
       .notification.is-link
         = @student.full_name

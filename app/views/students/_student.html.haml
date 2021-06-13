@@ -1,79 +1,78 @@
-.columns
+.columns.is-multiline
+  .column.is-one-fifth
+    .column
+      .has-text-centered.has-backgroud-light
+        = image_tag "student-dashboard.jpg", height: '600', width: '500'
+        .p.title.has-text-centered
+          = student.username + "'s" + " dashboard"  
+    .column
+      %article.media
+        .media-content
+          = admin_add_school_button_student
   .column.is-four-fifths
-    %article.panel.is-info
-      %p.panel-heading
-        = student.full_name + "'s dashbord"
-      - if @student.schools.any?        
-        = link_to student_schools_url(@student), class: "panel-block" do
-          %span.panel-icon
-            %i.fas.fa-building.has-text-success{"aria-hidden" => "true"}
-          My schools
-      - else
-        %a.panel-block
-          %span.panel-icon
-            %i.fas.fa-times-circle.has-text-danger{"aria-hidden" => "true"}
-          No schools allocated to you
-      - if @student.standards.any?        
-        = link_to student_standards_url(@student), class: "panel-block" do
-          %span.panel-icon
-            %i.fas.fa-chalkboard-teacher.has-text-success{"aria-hidden" => "true"}
-          My classes
-      - else
-        %a.panel-block
-          %span.panel-icon
-            %i.fas.fa-times-circle.has-text-danger{"aria-hidden" => "true"}
-          No classes allocated to you    
-      %a.panel-block
-        %span.panel-icon
-          %i.fas.fa-book{"aria-hidden" => "true"}
-        minireset.css
-      %a.panel-block
-        %span.panel-icon
-          %i.fas.fa-book{"aria-hidden" => "true"}
-        jgthms.github.io
-    = admin_add_school_button_student
-  .column.is-one-fifth   
-    .card
-      .card-image
-        .image-is-4x3
-          - if student.avatar.present?
-            = image_tag student.avatar, class: "is-rounded"
-          - else
-            = image_tag "bulma.png"  
-      .card-content
-        %strong Full Name:
-        %br
-        = student.full_name
-        %p
-          %strong username:
-          %br
-          = student.username
-        %p
-          %strong Contact Number:
-          %br
-          = student.contact
-        %p
-          %strong Email:
-          %br
-          = student.email
-        %p
-          %strong Father:
-          %br
-          = student.father
-        %p
-          %strong Mother:
-          %br
-          = student.mother
-        %p
-          %strong Address:
-          %br
-          = student.address
-      - if user_signed_in_non_student?
-        .card-footer 
-          .card-footer-item 
-            - if current_user.has_role?(:admin)
-              = link_to edit_student_path(student), class: "button is-warning" do 
-                Edit student
+    .columns.is-multiline
+      .column.is-full.pb-0
+        %article.media
+          %figure.media-left
+            %p.image.is-96x96
+              - if student.avatar.present?
+                = image_tag student.avatar
+              - else
+                = image_tag "bulma.png"
+          .media-content
+            .content
+              %strong Full Name:
+              = student.full_name
+              %p
+                %strong Username:
+                = student.username
+                %strong Contact Number:
+                = student.contact
+                %strong Email:
+                = student.email
+                %strong Father:
+                = student.father
+                %strong Mother:
+                = student.mother
+                %strong Address:
+                = student.address
+                - if user_signed_in_non_student?
+                  - if current_user.has_role?(:admin)
+                    = link_to edit_student_path(student), class: "button is-warning is-small" do 
+                      Edit student
+      .column.is-full.pt-0 
+        .media-content
+          %article.panel.is-info
+            %p.panel-heading
+              = student.full_name + "'s dashbord"
+            - if @student.schools.any?        
+              = link_to student_schools_url(@student), class: "panel-block" do
+                %span.panel-icon
+                  %i.fas.fa-building.has-text-success{"aria-hidden" => "true"}
+                My schools
+            - else
+              %a.panel-block
+                %span.panel-icon
+                  %i.fas.fa-times-circle.has-text-danger{"aria-hidden" => "true"}
+                No schools allocated to you
+            - if @student.standards.any?        
+              = link_to student_standards_url(@student), class: "panel-block" do
+                %span.panel-icon
+                  %i.fas.fa-chalkboard-teacher.has-text-success{"aria-hidden" => "true"}
+                My classes
+            - else
+              %a.panel-block
+                %span.panel-icon
+                  %i.fas.fa-times-circle.has-text-danger{"aria-hidden" => "true"}
+                No classes allocated to you    
+            %a.panel-block
+              %span.panel-icon
+                %i.fas.fa-book{"aria-hidden" => "true"}
+              minireset.css
+            %a.panel-block
+              %span.panel-icon
+                %i.fas.fa-book{"aria-hidden" => "true"}
+              jgthms.github.io       
 
 
     

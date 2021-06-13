@@ -1,4 +1,4 @@
-class StudentStandardAcademicYearController < ApplicationController
+class StudentStandardAcademicYearsController < ApplicationController
   def new
     @student = Student.friendly.find(params[:student_id])
     @standard = Standard.friendly.find(params[:standard_id])
