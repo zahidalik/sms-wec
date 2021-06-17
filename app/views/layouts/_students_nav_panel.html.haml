@@ -1,22 +1,23 @@
-.level
-  .level-item
-    .tabs.is-toggle.is-toggle-rounded.is-small
-      %ul
-        %li.is-active
-          %span
-            = link_to student_path(current_user) do
-              %span.icon.is-small
-                %i.fas.fa-user-graduate
-              = current_user.username
-        %li
-          %span
-            = link_to student_schools_path(current_user) do
-              %span.icon.is-small
-                %i.fas.fa-building
-              My schools
-        %li
-          %span
-            = link_to student_standards_path(current_user) do
-              %span.icon.is-small
-                %i.fas.fa-school
-              My classes
+- unless controller_name == "students" && action_name == "show" && params[:id] == current_user.username
+  .level
+    .level-item
+      .tabs.is-toggle.is-toggle-rounded.is-small
+        %ul
+          %li.is-active
+            %span
+              = link_to student_path(current_user) do
+                %span.icon.is-small
+                  %i.fas.fa-user-graduate
+                = current_user.username
+          %li
+            %span
+              = link_to student_schools_path(current_user) do
+                %span.icon.is-small
+                  %i.fas.fa-building
+                My schools
+          %li
+            %span
+              = link_to student_standards_path(current_user) do
+                %span.icon.is-small
+                  %i.fas.fa-school
+                My classes

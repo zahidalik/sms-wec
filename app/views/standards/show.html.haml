@@ -1,2 +1,5 @@
-= @standard.name
-= @standard.section
+- if @standard.school.name == 'UANS'
+  = image_tag "uans-show.svg"
+- if user_signed_in_non_student?
+  = @standard.name
+  = @standard.section
