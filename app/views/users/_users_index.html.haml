@@ -1,17 +1,28 @@
-- @users.each do |user|
-  %tbody
-    %tr
-      %th{:scope => "row"} 
-        = link_to user_path(user) do
-          .fa.fa-link
-          = user.full_name
-      %td
-        = user.email
-      %td
-        = user.mobile
-      %td
-        = render 'users/roles', user: user
-      - if current_user.has_role?(:admin)
-        %td 
-          = link_to edit_user_url(user), class: "button is-warning is-small" do
-            Edit
+.columns.is-multiline
+  - @users.each do |user|
+    .column.is-one-fifth
+      .card
+        .card-image
+          %figure.image.is-3by2
+            - if user.avatar.present?
+              = image_tag user.avatar
+            - else
+              = image_tag "bulma.png"
+        .card-header
+          .card-header-title.is-centered
+            = link_to user_path(user) do
+              = user.full_name
+        .card-content
+          %small 
+            %strong Email: 
+            = user.email
+          %br/
+          %small 
+            %strong Contact:
+            = user.mobile
+          %br/
+          = render 'users/roles', user: user
+        .card-footer
+          - if current_user.has_role?(:admin)
+            = link_to edit_user_url(user), class: "button is-warning is-small card-footer-item" do
+              Edit

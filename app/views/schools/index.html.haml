@@ -5,30 +5,23 @@
 - if user_signed_in_non_student?
   - if current_user.has_role?(:admin)
     .title.has-text-centered All Schools
-    .level
-      .level-item  
-        %table.table.is-fullwidth.is-hoverable.has-background-link-light
-          %thead
-            %tr
-              %th{:scope => "col"} School
-              %th{:scope => "col"} Head of the school
-              %th{:scope => "col"} Deputy Head
-              %th{:scope => "col"} Classes
-              %th{:scope => "col"} Action
-          - @schools.each do |school|
-            %tbody
-              %tr
-                %th{:scope => "row"}
-                  = school_link(school)
-                %td
-                  = school.head
-                %td
-                  = school.deputy_head
-                %td
-                  = link_to school_standards_path(school), class: "button is-link is-small" do
-                    Classes in
-                    = school.name
-                %td
-                  = link_to edit_school_path(school), class: "button is-warning is-small" do
-                    Edit
-    
+    .columns.is-multiline
+      - @schools.each do |school|
+        .column.is-one-quarter
+          .card.has-background-success-light
+            .card-header
+              .card-header-title.is-centered
+                = school.name
+            .card-content
+              %strong Head of the school:
+              = school.head
+              %br/
+              %strong Deputy Head of the school:
+              = school.deputy_head
+            .card-footer
+              = link_to school_standards_path(school), class: "button is-link is-small card-footer-item" do
+                Classes in
+                = school.name
+              = link_to edit_school_path(school), class: "button is-warning is-small card-footer-item" do
+                Edit
+              = school_link(school)

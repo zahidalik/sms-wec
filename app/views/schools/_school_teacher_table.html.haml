@@ -1,34 +1,26 @@
-.is-size-4.has-text-centered.has-background-light
-  .fa.fa-chalkboard-teacher.has-text-link
+.title.has-text-centered
+  .fas.fa-chalkboard-teacher
   My Classes in
   = @school.name
-%table.table.is-fullwidth.is-hoverable.has-background-success-light
-  %thead
-    %tr
-      %th{:scope => "col"} Classs
-      %th{:scope => "col"} Section
-      %th{:scope => "col"} Class Teacher
-      %th{:scope => "col"} Academic Year
-  %tbody
-    - @user_school_standards.each do |standard|
-      %tr
-        %th{:scope => "row"}
-          = link_to user_standard_url(@user,standard) do
-            .fa.fa-link 
-            = standard.name
-        %td
-          = standard.section
-        %td
-          = standard.class_teacher
-        %td
-          = standard.with_user_standard_academic_year(@user, standard)
-    %tr
-      %th{:scope => "row"} My Students
-      %td
-        = link_to user_standards_url(@user) do
-          Show my students
-    -# %tr
-    -#   %th{:scope => "row"} Students
-    -#   %td
-    -#     = link_to school_students_url(@school) do
-    -#       Show all Students
+.columns.is-multiline
+  - @user_school_standards.each do |standard|
+    .column.is-one-fifth
+      .card.has-background-success-light
+        .card-header 
+          .card-header-title.is-centered
+            = link_to student_standard_url(@user, standard) do
+              .fa.fa-link 
+              = standard.name
+        .card-content
+          %small
+            %strong Section:
+            = standard.section
+          %br
+          %small
+            %strong Class Teacher:
+            = standard.class_teacher
+          %br
+          %small
+            %strong Academic Year
+            = standard.with_user_standard_academic_year(@user, standard)
+%hr.has-background-info

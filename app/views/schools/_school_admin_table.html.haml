@@ -1,55 +1,56 @@
-.is-size-4.has-text-centered.has-background-light
-  .fa.fa-cogs.has-text-link
-  Admin
-.columns
-  .column.is-half
+.content
+  .title.has-text-centered
+    .fa.fa-cogs
+    Admin
+  .message.is-dark
+    .message-body
+      To add the user/student to a new class in this school click "Add here" button.
+  .columns.is-multiline 
     = link_to school_standards_url(@school), class: "button is-link is-fullwidth" do
       .fa.fa-arrow-circle-right
       All classes and Add a new class
-    %table.table.is-fullwidth.is-hoverable.has-background-info-light
-      %thead
-        %tr
-          %th{:scope => "col"} Class
-          %th{:scope => "col"} Section
-          %th{:scope => "col"} Action
-          - if params[:user_id]
-            %th{:scope => "col"} Add User
-          - if params[:student_id]
-            %th{:scope => "col"} Add Student
-      %tbody
-        - @school.standards.each do |standard|
-          %tr
-            %th{:scope => "row"}
+    - @school.standards.each do |standard|
+      .column.is-one-fifth
+        .card.has-background-link-light
+          .card-header
+            .card-header-title.is-centered
               = link_to standard_url(standard) do
                 .fa.fa-link
                 = standard.name
-            %td
+          .card-content
+            %small 
+              %strong Section:
               = standard.section
-            %td
-              = link_to edit_standard_url(standard), class: "button is-warning is-small" do
-                Edit
-            - if params[:user_id] 
-              %td
-                = add_user_to_class_with_count(@user, standard)
-            - if params[:student_id] 
-              %td
-                = link_to new_student_standard_student_standard_academic_year_url(@student, standard), class: "button is-link is-small" do
-                  Add student to this class
-  .column.is-half
-    %table.table.is-fullwidth.is-hoverable.has-background-primary-light
-      %thead
-        %tr
-          %th{:scope => "col"} School related
-          %th{:scope => "col"} Action
-      %tbody
-        %tr
-          %th{:scope => "row"} Users
-          %td
-            = link_to school_users_url(@school), class: "button is-link is-small" do
-              Show all
-        %tr
-          %th{:scope => "row"} Students
-          %td
-            = link_to school_students_url(@school), class: "button is-link is-small" do
-              Show all
-%hr/
+            %br
+            %small 
+              %strong Class teacher:
+              = standard.class_teacher
+          .card-footer
+            = link_to edit_standard_url(standard), class: "button is-warning is-small card-footer-item" do
+              Edit
+            - if params[:user_id]
+              = add_user_to_class_with_count(@user, standard)
+            - if params[:student_id]
+              = link_to new_student_standard_student_standard_academic_year_url(@student, standard), class: "button is-link is-small card-footer-item" do
+                Add here
+  .columns.is-multiline
+    .column
+      .card.has-background-success-light
+        .card-header
+          .card-header-title.is-centered
+            Users
+        .card-content
+          Click the button below to see all the users connected with this school.
+        .card-footer 
+          = link_to school_users_url(@school), class: "button is-link is-small card-footer-item" do
+            Show
+    .column
+      .card.has-background-success-light
+        .card-header
+          .card-header-title.is-centered
+            Students
+        .card-content
+          Click the button below to see all the students connected with this school.
+        .card-footer 
+          = link_to school_students_url(@school), class: "button is-link is-small card-footer-item" do
+            Show

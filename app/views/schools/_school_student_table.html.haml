@@ -1,26 +1,30 @@
-.is-size-4.has-text-centered.has-background-light
-  .fas.fa-user-graduate.has-text-link
+.title.has-text-centered
+  .fas.fa-user-graduate
   My Classes in
   = @school.name
-%table.table.is-fullwidth.is-hoverable.has-background-success-light
-  %thead
-    %tr
-      %th{:scope => "col"} Classs
-      %th{:scope => "col"} Section
-      %th{:scope => "col"} Class Teacher
-      %th{:scope => "col"} Academic Year
-  %tbody
+.columns.is-multiline
+  - if @student_school_standards.any? 
     - @student_school_standards.each do |standard|
-      %tr
-        %th{:scope => "row"}
-          = link_to student_standard_url(@student, standard) do
-            .fa.fa-link 
-            = standard.name
-        %td
-          = standard.section
-        %td
-          = standard.class_teacher
-        %td
-          = standard.with_student_standard_academic_year(@student, standard)
-      
-
+      .column.is-one-fifth
+        .card.has-background-success-light
+          .card-header 
+            .card-header-title.is-centered
+              = link_to student_standard_url(@student, standard) do
+                .fa.fa-link 
+                = standard.name
+          .card-content
+            %small
+              %strong Section:
+              = standard.section
+            %br
+            %small
+              %strong Class Teacher:
+              = standard.class_teacher
+            %br
+            %small
+              %strong Academic Year
+              = standard.with_student_standard_academic_year(@student, standard)
+  - else
+    .message.is-danger
+      .message-body No classes yet. Please contact the school authorities!
+%hr.has-background-info

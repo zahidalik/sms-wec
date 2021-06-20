@@ -1,14 +1,15 @@
 .title.has-text-centered
   = @school.name
+%hr.has-background-success
 .columns     
   .column.is-four-fifths
     - if user_signed_in_non_student?
-      - if current_user.has_role?(:admin)
-        = render "schools/school_admin_table"
       - if current_user.has_role?(:teacher) || current_user.has_role?(:admin) && params[:user_id] 
         = render "schools/school_teacher_table"
       - if current_user.has_role?(:admin) && params[:student_id] 
         = render "schools/school_student_table"
+      - if current_user.has_role?(:admin)
+        = render "schools/school_admin_table"
     - if user_signed_in_student?
       - if @student
         = render "schools/school_student_table"

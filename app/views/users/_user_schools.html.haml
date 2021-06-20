@@ -1,22 +1,20 @@
 - if user.schools.any?
-  %section.hero.is-info
-    .hero-body
-      %p.title.has-text-centered
-        = user.full_name + "'s"
-        Schools
-      %p    
-      %p.subtitle.has-text-centered
-        - user.schools.each do |school|
-          %span.tag.is-link.is-light.is-medium
+  .title.has-text-centered
+    = user.full_name + "'s Schools"
+  .columns.is-multiline   
+    - user.schools.each do |school|
+      .column.is-one-fifth
+        .card.has-background-success-light
+          .card-content.has-text-centered.is-size-4
             = school.name
-            |
-            = link_to user_school_url(user, school) do
+          .card-footer
+            = link_to user_school_url(user, school), class: "card-footer-item" do
               %i.fa.fa-link
+              show
 - else
-  %section.hero.is-danger
-    .hero-body
-      %p.title.has-text-centered
-        No schools
+  .card.has-background-danger
+    .card-content
+      No schools
 - if current_user.has_role?(:admin)
   %br/
   .notification.is-link.subtitle.is-light.has-text-centered.animate__animated.animate__slideInUp

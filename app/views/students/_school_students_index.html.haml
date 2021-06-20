@@ -1,16 +1,27 @@
-- @school_students.each do |student|
-  %tbody
-    %tr
-      %th{:scope => "row"} 
-        = link_to student_path(student) do
-          .fa.fa-link
-          = student.full_name
-      %td
-        = student.father
-      %td
-        = student.contact
-      - if user_signed_in_non_student?
-        - if current_user.has_role?(:admin)
-          %td
-            = link_to edit_student_url(student), class: "button is-warning is-small" do
-              Edit
+.columns.is-multiline
+  - @school_students.each do |student|
+    .column.is-one-fifth
+      .card
+        .card-image
+          %figure.image.is-3by2
+            - if student.avatar.present?
+              = image_tag student.avatar
+            - else
+              = image_tag "bulma.png"
+        .card-header
+          .card-header-title.is-centered
+            = link_to student_path(student) do
+              = student.full_name
+        .card-content
+          %small 
+            %strong Father:
+            = student.father
+          %br/
+          %small 
+            %strong Contact:
+            = student.contact
+        .card-footer
+          - if user_signed_in_non_student?
+            - if current_user.has_role?(:admin)
+              = link_to edit_student_url(student), class: "button is-warning is-small card-footer-item" do
+                Edit
