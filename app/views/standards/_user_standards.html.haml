@@ -1,0 +1,21 @@
+.columns.is-multiline
+  - @user_standards.each do |standard|
+    .column.is-one-fifth
+      .card.has-background-link-light
+        .card-header
+          .card-header-title.is-centered
+            = link_to standard_path(@user, standard) do
+              .fa.fa-link
+              = standard.name
+        .card-content
+          %small 
+            %strong Section:
+            = standard.section
+          %br
+          %small
+            %strong Class Teacher:
+            = standard.class_teacher
+          %br
+          %small
+            %strong School:
+            = standard.school.name

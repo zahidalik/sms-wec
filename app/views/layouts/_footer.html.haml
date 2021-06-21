@@ -1,0 +1,29 @@
+.container
+  .footer
+    .content
+      .columns.is-multiline
+        .column.is-two-quarters
+          %small 
+            .far.fa-copyright
+            This website belongs to Wali ul Asr Education Centre.
+            %p
+            .fa.fa-info-circle
+            For information regarding WIPAHS, please visit
+            = link_to "https://www.wipahs.co.tz" do
+              our website
+              .fa.fa-globe-africa
+        .column.is-one-quarter
+          %small
+            .fa.fa-info-circle
+            We have used vector illustrations from
+            = link_to "https://www.vecteezy.com/free-vector/vector" do
+              .fa.fa-globe-africa
+              Vecteezy
+            and
+            = link_to "https://www.freepik.com/vectors/background" do
+              .fa.fa-globe-africa
+              Freepik
+      .box
+        - if Rails.env.development?
+          = debug(params)
+          /= console

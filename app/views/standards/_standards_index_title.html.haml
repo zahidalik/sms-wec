@@ -1,0 +1,23 @@
+- if user_signed_in_non_student?
+  - if current_user.has_role?(:admin) && !params[:user_id] && !params[:student_id]
+    .column.is-four-fifths
+      .title.has-text-centered All Classes
+    .column.is-one-fifth
+      = link_to new_school_standard_url(@school), class: 'button is-link is-pulled-right' do
+        Create new class
+  - if current_user.has_role?(:admin) && params[:user_id]
+    .column.is-full
+      .title.has-text-centered
+        = @user.full_name + "'s classes"
+  - if current_user.has_role?(:admin) && params[:student_id]
+    .column.is-full
+      .title.has-text-centered
+        = @student.full_name + "'s classes"
+  - if @user
+    .column.is-full
+      .title.has-text-centered
+        My classes
+- if user_signed_in_student?
+  .column.is-full
+    .title.has-text-centered
+      My classes
