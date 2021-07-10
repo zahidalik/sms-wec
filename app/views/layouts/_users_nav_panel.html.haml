@@ -15,12 +15,6 @@
               = link_to user_schools_path(current_user) do
                 %span.icon.is-small
                   %i.fas.fa-user
-                My schools
-          %li
-            %span
-              = link_to user_standards_path(current_user) do
-                %span.icon.is-small
-                  %i.fas.fa-user
-                My classes 
+                My schools 
           - if current_user.has_role?(:admin)
             = render "layouts/admin_nav_panel"

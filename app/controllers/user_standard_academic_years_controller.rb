@@ -1,4 +1,13 @@
 class UserStandardAcademicYearsController < ApplicationController
+  before_action :authenticate_admin!
+  
+  def show
+    if params[:user_id]
+      @user = User.friendly.find(params[:user_id])
+      @user_standard_academic_year = UserStandardAcademicYear.friendly.find(params[:id])
+    end
+  end
+
   def new
     @user = User.friendly.find(params[:user_id])
     @standard = Standard.friendly.find(params[:standard_id])

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_27_192847) do
+ActiveRecord::Schema.define(version: 2021_07_09_122820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,16 @@ ActiveRecord::Schema.define(version: 2021_05_27_192847) do
     t.index ["student_id"], name: "index_student_standard_academic_years_on_student_id"
   end
 
+  create_table "student_subjects", force: :cascade do |t|
+    t.string "name"
+    t.bigint "student_standard_academic_year_id", null: false
+    t.bigint "user_standard_academic_year_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["student_standard_academic_year_id"], name: "index_student_subjects_on_student_standard_academic_year_id"
+    t.index ["user_standard_academic_year_id"], name: "index_student_subjects_on_user_standard_academic_year_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -134,8 +144,18 @@ ActiveRecord::Schema.define(version: 2021_05_27_192847) do
     t.bigint "standard_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_user_standard_academic_years_on_slug", unique: true
     t.index ["standard_id"], name: "index_user_standard_academic_years_on_standard_id"
     t.index ["user_id"], name: "index_user_standard_academic_years_on_user_id"
+  end
+
+  create_table "user_subjects", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_standard_academic_year_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_standard_academic_year_id"], name: "index_user_subjects_on_user_standard_academic_year_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -167,8 +187,11 @@ ActiveRecord::Schema.define(version: 2021_05_27_192847) do
   add_foreign_key "student_schools", "students"
   add_foreign_key "student_standard_academic_years", "standards"
   add_foreign_key "student_standard_academic_years", "students"
+  add_foreign_key "student_subjects", "student_standard_academic_years"
+  add_foreign_key "student_subjects", "user_standard_academic_years"
   add_foreign_key "user_schools", "schools"
   add_foreign_key "user_schools", "users"
   add_foreign_key "user_standard_academic_years", "standards"
   add_foreign_key "user_standard_academic_years", "users"
+  add_foreign_key "user_subjects", "user_standard_academic_years"
 end

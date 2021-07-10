@@ -1,0 +1,19 @@
+.title.has-text-centered Confirmation
+.message.is-danger
+  .message-body
+    You are going to add a subject for
+    %strong 
+      = @user.full_name
+    for
+    %strong 
+      = @user_standard_academic_year.standard.name
+    section
+    %strong 
+      = @user_standard_academic_year.standard.section
+    in the academic year
+    %strong 
+      = @user_standard_academic_year.year + "."
+    If you are sure please proceed by clicking the button below:
+
+= link_to new_user_user_standard_academic_year_user_subject_url(@user, @user_standard_academic_year), class: "button is-success" do
+  Proceed

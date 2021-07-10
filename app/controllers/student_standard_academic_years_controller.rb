@@ -1,4 +1,6 @@
 class StudentStandardAcademicYearsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def new
     @student = Student.friendly.find(params[:student_id])
     @standard = Standard.friendly.find(params[:standard_id])

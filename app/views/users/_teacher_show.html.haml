@@ -15,28 +15,7 @@
     %a.panel-block
       %span.panel-icon
         %i.fas.fa-times-circle.has-text-danger{"aria-hidden" => "true"}
-      No schools allocated to you
-  - if @user.standards.any?        
-    = link_to user_standards_url(@user), class: "panel-block" do
-      %span.panel-icon
-        %i.fas.fa-chalkboard-teacher.has-text-success{"aria-hidden" => "true"}
-      My classes
-  - else
-    %a.panel-block
-      %span.panel-icon
-        %i.fas.fa-times-circle.has-text-danger{"aria-hidden" => "true"}
-      No classes allocated to you
-  %a.panel-block
-    %span.panel-icon
-      %i.fas.fa-book{"aria-hidden" => "true"}
-    My Subjects
-    .panel-tabs
-      - if @user.standards.any?
-        - @user.standards.each do |standard|      
-          = link_to user_standard_url(@user, standard) do
-            = standard.name
-      - else
-        %a No class allocated to you    
+      No schools allocated to you    
   %a.panel-block
     %span.panel-icon
       %i.fas.fa-book{"aria-hidden" => "true"}

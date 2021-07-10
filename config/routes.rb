@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   # get 'schools/user_schools/:user_id/:school_id', to: "user_schools#new", as: :user_school_new
 
   resources :users do
+    resources :user_standard_academic_years, only: [:show] do
+      resources :user_subjects, only: [:new, :create]
+    end
     resources :standards, only: [:index, :show] do
       resources :user_standard_academic_years, only: [:new, :create]
     end

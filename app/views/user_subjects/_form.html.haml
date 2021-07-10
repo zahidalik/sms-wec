@@ -1,0 +1,14 @@
+.level 
+  .level-item
+    = simple_form_for([@user, @user_standard_academic_year, @user_subject], url: user_user_standard_academic_year_user_subjects_url) do |f|
+      = f.error_notification
+      .notification.is-link
+        = @user.full_name
+      .notification.is-success
+        = @standard.name
+        ,
+        = @standard.section
+        , year
+        = @user_standard_academic_year.year    
+      = f.input :name, placeholder: "Name of the subject"
+      = f.submit "Add the subject", class: "button is-link"

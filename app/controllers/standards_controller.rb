@@ -20,6 +20,17 @@ class StandardsController < ApplicationController
   def show
     # @school = School.friendly.find(params[:id])
     @standard = Standard.friendly.find(params[:id])
+    @standard_subjects = @standard.user_subjects
+    if params[:student_id]
+      @student = Student.friendly.find(params[:student_id])
+      @student_standard = StudentStandardAcademicYear.where(student_id: @student.id, standard_id: @standard.id, year: Date.current.year).first
+      @subjects = @student_standard.student_subjects
+    end
+    if params[:user_id]
+      @user = User.friendly.find(params[:user_id])
+      @user_standard = UserStandardAcademicYear.where(user_id: @user.id, standard_id: @standard.id, year: Date.current.year).first
+      @user_subjects = @user_standard.user_subjects
+    end
   end
 
   def edit

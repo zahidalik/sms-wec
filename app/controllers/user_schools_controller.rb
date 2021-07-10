@@ -26,13 +26,4 @@ class UserSchoolsController < ApplicationController
       redirect_to user_url(@user)
     end
   end
-
-  private
-
-  def authenticate_admin!
-    unless current_user.has_role?(:admin)
-      flash[:danger] = "You are not authorised to do this action"
-      redirect_to user_url(current_user)
-    end
-  end
 end
