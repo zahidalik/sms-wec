@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+ .islamic-background {
+   background-image: url("home_background.jpg");
+   background-size: contain;
+ }
+
+ .welcome-back {
+  background-image: url("welcome.jpg");
+  background-size: cover;
+ }

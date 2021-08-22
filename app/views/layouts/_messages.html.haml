@@ -2,4 +2,5 @@
   - if name.is_a?(String)
     %div{:class => "notification #{name.to_s == 'success' ? 'is-primary' : 'is-danger'}"}
       /= content_tag :div, msg, :id => "flash_#{name}"
+      %button.delete
       = msg

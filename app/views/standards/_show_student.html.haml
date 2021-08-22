@@ -1,0 +1,11 @@
+.subtitle My Subjects
+.content
+  %ol 
+    - @subjects.each do |subject|
+      %li 
+        .tag.is-link.is-medium 
+          = subject.name
+          .tag.is-success   
+            = subject.user_standard_academic_year.user.full_name
+          .tag.is-info
+            = subject.user_standard_academic_year.year

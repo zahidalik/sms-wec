@@ -1,26 +1,29 @@
-- if @standard.school.name == 'UANS'
-  = image_tag "uans-show.svg"
-= @standard.name
-= @standard.section
+= render 'standards/show_top_image'
+= standard_title
+%hr/
 - if params[:student_id]
-  .ul 
-    - @subjects.each do |subject|
-      .li 
-        = subject.name
+  = render 'standards/show_student'
+
 - if user_signed_in_non_student?
-  - if params[:user_id]
-    .ul 
-      - @user_subjects.each do |subject|
-        .li 
-          = subject.name
-    - if current_user.has_role?(:admin)
-      = link_to user_user_standard_academic_year_url(@user, @user_standard), class: "button is-link" do
-        Click to add subjects
+  = render 'standards/show_user'
 
 - if !params[:user_id] && !params[:student_id]
-  %ul 
-    - @standard_subjects.each do |subject|
-      %li 
-        = subject.name
-        = subject.user_standard_academic_year.year
-        = subject.user_standard_academic_year.user.username
+  .subtitle All Subjects
+  .content
+    %ol 
+      - @standard_subjects.each do |subject|
+        %li 
+          .tag.is-link.is-medium
+            = subject.name
+            .tag.is-success   
+              = subject.user_standard_academic_year.user.full_name
+            .tag.is-info
+              = subject.user_standard_academic_year.year
+  %hr/
+  .subtitle All Students
+  .content
+    %ol 
+      - @standard.students.each do |student|
+        %li 
+          .tag.is-link.is-medium
+            = student.full_name 

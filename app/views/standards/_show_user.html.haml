@@ -1,0 +1,16 @@
+- if params[:user_id]
+  .columns
+    .column.is-four-fifths
+      .subtitle My Subjects
+      .content       
+        %ol 
+          - @user_subjects.each do |subject|
+            %li 
+              .tag.is-link.is-medium 
+                = subject.name
+                .tag.is-info
+                  = subject.user_standard_academic_year.year
+    - if current_user.has_role?(:admin)
+      .column.is-one-fifth
+        = link_to user_user_standard_academic_year_url(@user, @user_standard), class: "button is-link" do
+          Click to add subjects
