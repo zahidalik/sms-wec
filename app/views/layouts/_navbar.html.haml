@@ -36,3 +36,5 @@
     = render "layouts/users_nav_panel"
   - elsif user_signed_in_student?
     = render "layouts/students_nav_panel"
+  - elsif user_signed_in_mttc_user?
+    = render "layouts/mttc_users_panel"

@@ -1,0 +1,19 @@
+- unless controller_name == "mttc_users" && action_name == "show" && params[:id] == current_user.username
+  .level
+    .level-item
+      .tabs.is-toggle.is-toggle-rounded.is-small
+        %ul
+          %li.is-active
+            %span
+              = link_to mttc_user_path(current_user), class: "is-active" do
+                %span.icon.is-small
+                  %i.fas.fa-user
+                = current_user.username
+          -# %li
+          -#   %span
+          -#     = link_to user_schools_path(current_user) do
+          -#       %span.icon.is-small
+          -#         %i.fas.fa-user
+          -#       My schools 
+          -# - if current_user.has_role?(:admin)
+          -#   = render "layouts/admin_nav_panel"

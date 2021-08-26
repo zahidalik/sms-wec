@@ -1,1 +1,7 @@
 = @mttc_user.full_name
+- if @mttc_user.is_admin?
+  .title Hello Admin
+- if @mttc_user.is_teacher?
+  .title Hello Teacher
+- if @mttc_user.is_class_teacher?
+  .title Hello Class Teacher
