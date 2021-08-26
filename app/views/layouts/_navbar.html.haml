@@ -13,14 +13,20 @@
       %a.navbar-item
       = link_to root_path, class: 'navbar-item' do
         WEC SMS
-      %a.navbar-item
-        MTTC   
+      - unless user_signed_in_mttc_user?
+        .navbar-item
+          = link_to mttc_path, class: 'button is-info' do
+            MTTC 
     .navbar-end
       .navbar-item
         /.buttons
-        - if user_signed_in?  
-          = link_to sessions_logout_path, method: :delete, class: "button is-danger" do
-            Log out
+        - if user_signed_in?
+          - if user_signed_in_mttc_user?
+            = link_to mttc_sessions_logout_path, method: :delete, class: "button is-danger" do
+              Log out
+          - else
+            = link_to sessions_logout_path, method: :delete, class: "button is-danger" do
+              Log out
         - else
           = link_to sessions_login_path, class: "button is-primary" do
             %strong 

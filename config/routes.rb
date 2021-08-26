@@ -7,6 +7,12 @@ Rails.application.routes.draw do
     delete 'logout' => :destroy
   end
 
+  get 'mttc', to: 'mttc_sessions#new'
+  namespace :mttc_sessions do
+    post 'signin' => :create
+    delete 'logout' => :destroy
+  end
+
   # resources :users
   # resources :students
   # resources :schools
@@ -39,4 +45,6 @@ Rails.application.routes.draw do
     resources :users
     resources :students
   end
+
+  resources :mttc_users
 end

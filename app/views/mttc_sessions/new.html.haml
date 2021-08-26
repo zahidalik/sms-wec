@@ -1,0 +1,12 @@
+.mttc-background
+  .introduction-mttc
+    .title.has-text-centered Log in
+    = simple_form_for(:mttc_sessions, url: mttc_sessions_signin_path) do |f|
+      .field
+        = f.input :username
+      .field
+        = f.input :password
+      .has-text-centered
+        = f.submit "Log in", class: "button is-primary"
+        = link_to "Home", root_path, class: "button is-info"
+    
