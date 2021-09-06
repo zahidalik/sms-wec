@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_26_181948) do
+ActiveRecord::Schema.define(version: 2021_09_06_151657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,23 @@ ActiveRecord::Schema.define(version: 2021_08_26_181948) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "mttc_students", force: :cascade do |t|
+    t.string "username"
+    t.string "full_name"
+    t.date "d_o_b"
+    t.string "father"
+    t.string "mother"
+    t.string "religion"
+    t.string "status_of_father_and_mother"
+    t.string "contact_of_father"
+    t.string "contact_of_mother"
+    t.string "address"
+    t.date "admission_date"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "mttc_users", force: :cascade do |t|

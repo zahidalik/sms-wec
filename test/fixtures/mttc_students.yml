@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  username: MyString
+  full_name: MyString
+  d_o_b: 2021-09-06
+  father: MyString
+  mother: MyString
+  religion: MyString
+  status_of_father_and_mother: MyString
+  contact_of_father: MyString
+  contact_of_mother: MyString
+  address: MyString
+  admission_date: 2021-09-06
+  password_digest: MyString
+
+two:
+  username: MyString
+  full_name: MyString
+  d_o_b: 2021-09-06
+  father: MyString
+  mother: MyString
+  religion: MyString
+  status_of_father_and_mother: MyString
+  contact_of_father: MyString
+  contact_of_mother: MyString
+  address: MyString
+  admission_date: 2021-09-06
+  password_digest: MyString

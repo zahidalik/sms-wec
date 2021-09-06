@@ -1,6 +1,168 @@
-= @mttc_user.full_name
 - if @mttc_user.is_admin?
-  .title Hello Admin
+  .box
+    .title.has-text-centered
+      .fa.fa-user-cog
+      = @mttc_user.full_name
+      .tag.is-info ADMIN
+    .subtitle.has-text-centered
+      .tag.is-primary
+        - @mttc_user.designations.each do |des|
+          = des.charge + ", "
+  .columns.is-multiline.is-mobile.is-centered
+    .column.is-one-quarter
+      .card
+        %header.card-header
+          %p.card-header-title
+            MTTC Teachers And Management Portal
+        .card-content
+          .content
+            = link_to '#' do
+              %strong 
+                .fa.fa-link
+                Add New
+            %hr.has-background-link
+            Total number of teachers
+            %br/
+            Head of MTTC:
+            %br/ 
+            Deputy:
+            %br/
+            Dean:
+            %br/
+            Academic Head:
+            %hr.has-background-link
+            = link_to '#' do
+              %strong 
+                .fa.fa-link
+                See All
+    .column.is-one-quarter
+      .card
+        %header.card-header
+          %p.card-header-title
+            MTTC Students Portal
+        .card-content
+          .content
+            = link_to '#' do
+              %strong 
+                .fa.fa-link
+                New Admission
+            %hr.has-background-link
+            %strong Students in current academic year:
+            %br/
+            = link_to '#' do
+              Term 1 students
+            %br/
+            = link_to '#' do
+              Term 2 students
+            %br/
+            = link_to '#' do
+              Term 3 students
+            %br/
+            = link_to '#' do
+              Term 4 students
+            %br/
+            = link_to '#' do
+              Term 5 students
+            %br/
+            = link_to '#' do
+              Term 6 students
+            %br/
+            = link_to '#' do
+              Term 7 students
+            %br/
+            = link_to '#' do
+              Term 8 students
+            %br/
+            = link_to '#' do
+              Term 9 students
+            %br/
+            = link_to '#' do
+              Term 10 students
+            %br/
+            = link_to '#' do
+              Term 11 students
+            %br/
+            = link_to '#' do
+              Term 12 students
+            %hr.has-background-link
+            = link_to '#' do
+              %strong 
+                .fa.fa-link
+                See All
+    .column.is-one-quarter
+      .card
+        %header.card-header
+          %p.card-header-title
+            MTTC Subjects Portal
+        .card-content
+          .content
+            = link_to '#' do
+              %strong
+                .fa.fa-link
+                New Subject
+            %hr.has-background-link
+            = link_to '#' do
+              Term 1 subjects
+            %br/
+            = link_to '#' do
+              Term 2 subjects
+            %br/
+            = link_to '#' do
+              Term 3 subjects
+            %br/
+            = link_to '#' do
+              Term 4 subjects
+            %br/
+            = link_to '#' do
+              Term 5 subjects
+            %br/
+            = link_to '#' do
+              Term 6 subjects
+            %br/
+            = link_to '#' do
+              Term 7 subjects
+            %br/
+            = link_to '#' do
+              Term 8 subjects
+            %br/
+            = link_to '#' do
+              Term 9 subjects
+            %br/
+            = link_to '#' do
+              Term 10 subjects
+            %br/
+            = link_to '#' do
+              Term 11 subjects
+            %br/
+            = link_to '#' do
+              Term 12 subjects
+            %hr.has-background-link
+            = link_to '#' do
+              %strong
+                .fa.fa-link 
+                See All
+    .column.is-one-quarter
+      .card
+        %header.card-header
+          %p.card-header-title
+            MTTC Co Curricular And Extra Curricular Activities
+        .card-content
+          .content
+            = link_to '#' do
+              %strong
+                .fa.fa-link
+                Add New Co-Curricular Activity
+            %p 
+            = link_to '#' do
+              %strong
+                .fa.fa-link
+                Add New Extra-Curricular Activity
+            %hr.has-background-link
+            = link_to '#' do
+              All co-curricular activities
+            %br/
+            = link_to '#' do
+              All extra-curricular activities
 - if @mttc_user.is_teacher?
   .title Hello Teacher
 - if @mttc_user.is_class_teacher?
