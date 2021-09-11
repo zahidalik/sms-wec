@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_06_151657) do
+ActiveRecord::Schema.define(version: 2021_09_11_142004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,29 @@ ActiveRecord::Schema.define(version: 2021_09_06_151657) do
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "mttc_subjects", force: :cascade do |t|
+    t.string "name"
+    t.integer "credits"
+    t.float "hours"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "book"
+  end
+
+  create_table "mttc_subjects_pools", force: :cascade do |t|
+    t.string "term"
+    t.string "academic_year"
+    t.date "beginning_date"
+    t.date "ending_date"
+    t.time "lesson_time"
+    t.string "lesson_days"
+    t.string "class_room"
+    t.bigint "mttc_subject_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["mttc_subject_id"], name: "index_mttc_subjects_pools_on_mttc_subject_id"
   end
 
   create_table "mttc_users", force: :cascade do |t|
@@ -221,6 +244,7 @@ ActiveRecord::Schema.define(version: 2021_09_06_151657) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "mttc_subjects_pools", "mttc_subjects"
   add_foreign_key "standards", "schools"
   add_foreign_key "student_schools", "schools"
   add_foreign_key "student_schools", "students"

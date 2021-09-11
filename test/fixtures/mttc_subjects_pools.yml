@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  term: MyString
+  academic_year: MyString
+  beginning_date: 2021-09-11
+  ending_date: 2021-09-11
+  lesson_time: 2021-09-11 17:07:21
+  lesson_days: MyString
+  class_room: MyString
+  mttc_subject: one
+
+two:
+  term: MyString
+  academic_year: MyString
+  beginning_date: 2021-09-11
+  ending_date: 2021-09-11
+  lesson_time: 2021-09-11 17:07:21
+  lesson_days: MyString
+  class_room: MyString
+  mttc_subject: two
