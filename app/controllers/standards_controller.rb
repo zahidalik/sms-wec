@@ -23,12 +23,24 @@ class StandardsController < ApplicationController
     @standard_subjects = @standard.user_subjects
     if params[:student_id]
       @student = Student.friendly.find(params[:student_id])
-      @student_standard = StudentStandardAcademicYear.where(student_id: @student.id, standard_id: @standard.id, year: Date.current.year).first
+      academic_year_one = Date.current.year
+      academic_year_two = Date.current.year.to_s + "-" + (Date.current.year + 1).to_s
+      if StudentStandardAcademicYear.where(student_id: @student.id, standard_id: @standard.id, year: academic_year_one).first
+        @student_standard = StudentStandardAcademicYear.where(student_id: @student.id, standard_id: @standard.id, year: academic_year_one).first
+      else
+        @student_standard = StudentStandardAcademicYear.where(student_id: @student.id, standard_id: @standard.id, year: academic_year_two).first
+      end
       @subjects = @student_standard.student_subjects
     end
     if params[:user_id]
       @user = User.friendly.find(params[:user_id])
-      @user_standard = UserStandardAcademicYear.where(user_id: @user.id, standard_id: @standard.id, year: Date.current.year).first
+      academic_year_one = Date.current.year
+      academic_year_two = Date.current.year.to_s + "-" + (Date.current.year + 1).to_s
+      if UserStandardAcademicYear.where(user_id: @user.id, standard_id: @standard.id, year: academic_year_one).first
+        @user_standard = UserStandardAcademicYear.where(user_id: @user.id, standard_id: @standard.id, year: academic_year_one).first
+      else
+        @user_standard = UserStandardAcademicYear.where(user_id: @user.id, standard_id: @standard.id, year: academic_year_two).first
+      end
       @user_subjects = @user_standard.user_subjects
     end
   end

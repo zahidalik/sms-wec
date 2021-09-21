@@ -15,6 +15,12 @@ class StudentStandardAcademicYearsController < ApplicationController
     @student_standard.standard_id = @standard.id
 
     if @student_standard.save
+      if @student_standard.user_subjects.any?
+        @student_standard.user_subjects.each do |user_subject|
+          user_standard = user_subject.user_standard_academic_year 
+          @student_standard.student_subjects.create(name: user_subject.name, student_standard_academic_year_id: @student_standard.id, user_standard_academic_year_id: user_standard.id)
+        end
+      end
       flash[:success] = "Student has been successfully added to the class"
       redirect_to student_path(@student)
     else

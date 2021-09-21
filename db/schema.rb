@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_11_142004) do
+ActiveRecord::Schema.define(version: 2021_09_11_144618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,8 @@ ActiveRecord::Schema.define(version: 2021_09_11_142004) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "book"
+    t.string "slug"
+    t.index ["slug"], name: "index_mttc_subjects_on_slug", unique: true
   end
 
   create_table "mttc_subjects_pools", force: :cascade do |t|
@@ -93,7 +95,9 @@ ActiveRecord::Schema.define(version: 2021_09_11_142004) do
     t.bigint "mttc_subject_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
     t.index ["mttc_subject_id"], name: "index_mttc_subjects_pools_on_mttc_subject_id"
+    t.index ["slug"], name: "index_mttc_subjects_pools_on_slug", unique: true
   end
 
   create_table "mttc_users", force: :cascade do |t|

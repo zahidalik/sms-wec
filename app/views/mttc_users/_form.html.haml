@@ -1,0 +1,19 @@
+= simple_form_for @mttc_user do |f|
+  = f.error_notification
+  = f.input :username
+  = f.input :email
+  = f.input :full_name
+  = f.input :mobile
+  = f.input :address
+  = f.input :password
+  = f.input :password_confirmation
+  -# .label
+  -#   = f.label :avatar
+  -# .input
+  -#   = f.file_field :avatar
+  -# .label Roles for the new user
+  -# .input
+  = f.collection_check_boxes :designation_ids, Designation.all, :id, :charge
+  = f.error :roles, class: "has-text-danger"
+  %hr
+  = f.submit "Create MTTC User", class: "button is-success"
