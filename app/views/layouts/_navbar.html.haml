@@ -13,7 +13,7 @@
       %a.navbar-item
       = link_to root_path, class: 'navbar-item' do
         WEC SMS
-      - unless user_signed_in_mttc_user?
+      - unless user_signed_in? || user_signed_in_mttc_user?
         .navbar-item
           = link_to mttc_path, class: 'button is-info' do
             MTTC 
